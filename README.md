@@ -1,7 +1,6 @@
-# A Maze Generator
+# Chamber Danger
 
-This is a project which will create maze generators through algorithms as a course project for the course Tiralabra at University of Helsinki.
-
+This is a project where I will create a dungeon generator. The idea is to create a very well functioning and semi-simple program which can easily be expanded on in the future or if time allows it. The project is part of the Tiralabra course at University of Helsinki.
 
 ## Documentation
 
