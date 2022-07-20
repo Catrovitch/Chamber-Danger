@@ -10,7 +10,7 @@ The algorithm that will be used can be divided into roughly four steps.
 
 Steps:
 
-1. Generate an empty map of given size.
+1. Generate an empty map of a given size.
 2. Randomly place out chambers that do not overlap.
 3. Connect the chambers.
 4. Visualize the dungeon.
@@ -38,5 +38,3 @@ https://www.youtube.com/watch?v=TlLIOgWYVpI
 
 Create a Random Dungeon with Python (H.J. Petty, 2021)
 https://python.plainenglish.io/create-a-random-dungeon-with-python-f17118c1eebd
-
-
