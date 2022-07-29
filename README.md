@@ -7,6 +7,7 @@ This is a project where I will create a dungeon generator. The idea is to create
 ### Weekly reports
 
  - [Week 1](./documentation/week_1_report.md)
+ - [Week 2](./documentation/week_2_report.md)
 
 ### Other
 
