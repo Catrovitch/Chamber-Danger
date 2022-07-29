@@ -1,5 +1,7 @@
-from dungeon import Dungeon
-from draw_dungeon import draw_dungeon
+from services.dungeon import Dungeon
+from ui.draw_dungeon import draw_dungeon
+from ui.draw_dungeon2 import draw_dungeon2
+
 
 def generate_dungeon():    
     dungeon = Dungeon()

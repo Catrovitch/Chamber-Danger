@@ -1,6 +1,6 @@
 from random import randrange
 from random import shuffle
-from room import Room
+from services.room import Room
 
 map_height = 50
 map_width = 50
@@ -29,9 +29,7 @@ class Dungeon:
 
         total_rooms = randrange(min_rooms,max_rooms)    
     
-        for r in range(total_rooms):
-            if len(self.rooms) >= max_rooms:
-                break    
+        while len(self.rooms) <= total_rooms:  
     
             x = randrange(0,map_width)
             y = randrange(0,map_height)
@@ -41,13 +39,13 @@ class Dungeon:
             room = Room(x,y,width,height)
             
             if self.check_for_overlap(room):
-                pass
+                continue
             else:
                 self.rooms.append(room)    
             
             for room in self.rooms:
-                for y in range(room.y, room.y+room.height):
-                    for x in range(room.x, room.x+room.width):
+                for y in range(room.y1, room.y2):
+                    for x in range(room.x1, room.x2):
                         self.map[x,y] = 1
 
     def check_for_overlap(self, room):
@@ -55,20 +53,16 @@ class Dungeon:
         """Return false if the room overlaps any other room."""
 
         for current_room in self.rooms:
-            xmin1 = room.x
-            xmax1 = room.x + room.width
-            xmin2 = current_room.x
-            xmax2 = current_room.x + current_room.width
-            
-            ymin1 = room.y
-            ymax1 = room.y + room.height
-            ymin2 = current_room.y
-            ymax2 = current_room.y + current_room.height
-            
-            if (xmin1 <= xmax2 and xmax1 >= xmin2) and (ymin1 <= ymax2 and ymax1 >= ymin2) and xmax1 <= map_width-10 and ymax1 <= map_height-10:
-                return True
-                
-            return False
+                   
+            # If one rectangle is on left side of other
+            if(room.x1> current_room.x2 or current_room.x1 > room.x2):
+                return False
+        
+            # If one rectangle is above other
+            if(room.y2 > current_room.y1 or current_room.x2 > room.y2):
+                return False
+        
+            return True
 
     def connect_rooms(self):
 
@@ -78,12 +72,12 @@ class Dungeon:
             roomA = self.rooms[i]
             roomB = self.rooms[i+1]
             
-            for x in range(roomA.x,roomB.x):
-                self.map[x,roomA.y] = 1
-            for y in range(roomA.y, roomB.y):
-                self.map[roomA.x,y] = 1
+            for x in range(roomA.x1,roomB.x1):
+                self.map[x,roomA.y1] = 1
+            for y in range(roomA.y1, roomB.y1):
+                self.map[roomA.x1,y] = 1
                 
-            for x in range(roomB.x,roomA.x):
-                self.map[x,roomA.y] = 1
-            for y in range(roomB.y, roomA.y):
-                self.map[roomA.x,y] = 1
+            for x in range(roomB.x1,roomA.x1):
+                self.map[x,roomA.y1] = 1
+            for y in range(roomB.y1, roomA.y1):
+                self.map[roomA.x1,y] = 1
