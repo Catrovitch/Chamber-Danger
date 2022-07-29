@@ -9,11 +9,11 @@ class TestRoom(unittest.TestCase):
 
     def test_constructor_x(self):
 
-        self.assertEqual(self.room.x, 10)
+        self.assertEqual(self.room.x1, 10)
 
     def test_constructor_y(self):
 
-        self.assertEqual(self.room.y, 15)
+        self.assertEqual(self.room.y1, 15)
 
     def test_constructor_width(self):
 
@@ -22,7 +22,3 @@ class TestRoom(unittest.TestCase):
     def test_constructor_height(self):
 
         self.assertEqual(self.room.height, 25)
-
-    def test_constructor_colour(self):
-
-        self.assertEqual(self.room.colour, (92, 92, 92))

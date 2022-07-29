@@ -42,5 +42,3 @@ class TestDungeon(unittest.TestCase):
                 all_values_zero = False
         
         self.assertEqual(all_values_zero, True)
-
-    def 
