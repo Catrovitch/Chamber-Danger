@@ -25,6 +25,6 @@ This is a project where I will create a dungeon generator. The idea is to create
 A coverage-report can be produced with the command:
 
 ```bash
-poetry run-invoke coverage-report
+poetry run invoke coverage-report
 ```
 
