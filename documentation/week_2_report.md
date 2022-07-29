@@ -12,6 +12,6 @@ At its current state my program uses a raster format for storing information abo
 
 I also started writing tests for the program and came quite far. I didn't however finish it since I started to think about altertanive ways to do the project. 
 
-# Coverage-report for Week 2
+## Coverage-report for Week 2
 
 ![](./pictures/coverage-report_week2.png)
