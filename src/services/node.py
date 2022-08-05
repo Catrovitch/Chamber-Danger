@@ -1,6 +1,6 @@
 import random
 from services.chamber import Chamber
-class Node: # used for the BSP tree algorithm
+class Node:
     
     def __init__(self, x, y, width, height):
         self.x = x
@@ -14,7 +14,7 @@ class Node: # used for the BSP tree algorithm
         self.tunnel = None
 
     def splitNode(self):
-        # begin splitting the leaf into two children
+        
         if (self.child_1 != None) or (self.child_2 != None):
             return False # This leaf has already been split
 
@@ -27,6 +27,7 @@ class Node: # used for the BSP tree algorithm
         Otherwise, choose the direction at random.
         '''
         horizontal_split = random.choice([True, False])
+
         if (self.width/self.height >= 1.25):
             horizontal_split = False
         elif (self.height/self.width >= 1.25):
@@ -51,27 +52,27 @@ class Node: # used for the BSP tree algorithm
 
         return True
 
-    def createChambers(self, bspTree):
+    def createChambers(self, dungeon):
         
         if (self.child_1) or (self.child_2):
         # recursively search for children until you hit the end of the branch
             if (self.child_1):
-                self.child_1.createChambers(bspTree)
+                self.child_1.createChambers(dungeon)
             if (self.child_2):
-                self.child_2.createChambers(bspTree)
+                self.child_2.createChambers(dungeon)
 
             if (self.child_1 and self.child_2):
-                bspTree.createTunnel(self.child_1.getChamber(),
+                dungeon.createTunnel(self.child_1.getChamber(),
                     self.child_2.getChamber())
 
         else:
         # Create rooms in the end branches of the bsp tree
-            width = random.randint(bspTree.min_chamber_size, min(bspTree.max_chamber_size,self.width-1))
-            height = random.randint(bspTree.min_chamber_size, min(bspTree.max_chamber_size,self.height-1))
+            width = random.randint(dungeon.min_chamber_size, min(dungeon.max_chamber_size,self.width-1))
+            height = random.randint(dungeon.min_chamber_size, min(dungeon.max_chamber_size,self.height-1))
             x = random.randint(self.x, self.x+(self.width-1)-width)
             y = random.randint(self.y, self.y+(self.height-1)-height)
             self.chamber = Chamber(x,y,width,height)
-            bspTree.createChamber(self.chamber)
+            dungeon.createChamber(self.chamber)
 
     def getChamber(self):
         if (self.chamber): return self.chamber
