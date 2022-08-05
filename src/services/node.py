@@ -1,7 +1,9 @@
 import random
 from services.chamber import Chamber
+
+
 class Node:
-    
+
     def __init__(self, x, y, width, height):
         self.x = x
         self.y = y
@@ -14,9 +16,9 @@ class Node:
         self.tunnel = None
 
     def splitNode(self):
-        
+
         if (self.child_1 != None) or (self.child_2 != None):
-            return False # This leaf has already been split
+            return False  # This leaf has already been split
 
         '''
         ==== Determine the direction of the split ====
@@ -39,23 +41,26 @@ class Node:
             max = self.width - self.min_node_size
 
         if (max <= self.min_node_size):
-            return False # the leaf is too small to split further
+            return False  # the leaf is too small to split further
 
-        split = random.randint(self.min_node_size,max) #determine where to split the leaf
+        # determine where to split the leaf
+        split = random.randint(self.min_node_size, max)
 
         if (horizontal_split):
             self.child_1 = Node(self.x, self.y, self.width, split)
-            self.child_2 = Node( self.x, self.y+split, self.width, self.height-split)
+            self.child_2 = Node(self.x, self.y+split,
+                                self.width, self.height-split)
         else:
-            self.child_1 = Node( self.x, self.y,split, self.height)
-            self.child_2 = Node( self.x + split, self.y, self.width-split, self.height)
+            self.child_1 = Node(self.x, self.y, split, self.height)
+            self.child_2 = Node(self.x + split, self.y,
+                                self.width-split, self.height)
 
         return True
 
     def createChambers(self, dungeon):
-        
+
         if (self.child_1) or (self.child_2):
-        # recursively search for children until you hit the end of the branch
+            # recursively search for children until you hit the end of the branch
             if (self.child_1):
                 self.child_1.createChambers(dungeon)
             if (self.child_2):
@@ -63,19 +68,22 @@ class Node:
 
             if (self.child_1 and self.child_2):
                 dungeon.createTunnel(self.child_1.getChamber(),
-                    self.child_2.getChamber())
+                                     self.child_2.getChamber())
 
         else:
-        # Create rooms in the end branches of the bsp tree
-            width = random.randint(dungeon.min_chamber_size, min(dungeon.max_chamber_size,self.width-1))
-            height = random.randint(dungeon.min_chamber_size, min(dungeon.max_chamber_size,self.height-1))
+            # Create rooms in the end branches of the bsp tree
+            width = random.randint(dungeon.min_chamber_size, min(
+                dungeon.max_chamber_size, self.width-1))
+            height = random.randint(dungeon.min_chamber_size, min(
+                dungeon.max_chamber_size, self.height-1))
             x = random.randint(self.x, self.x+(self.width-1)-width)
             y = random.randint(self.y, self.y+(self.height-1)-height)
-            self.chamber = Chamber(x,y,width,height)
+            self.chamber = Chamber(x, y, width, height)
             dungeon.createChamber(self.chamber)
 
     def getChamber(self):
-        if (self.chamber): return self.chamber
+        if (self.chamber):
+            return self.chamber
 
         else:
             if (self.child_1):

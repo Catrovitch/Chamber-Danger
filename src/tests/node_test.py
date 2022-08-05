@@ -3,6 +3,7 @@ import unittest
 from services.node import Node
 from services.BSPDungeon import BSPDungeon
 
+
 class TestNode(unittest.TestCase):
 
     def setUp(self):
@@ -50,7 +51,7 @@ class TestNode(unittest.TestCase):
         self.assertEqual(self.node.splitNode(), True)
 
     def test_splitNode_too_small_to_split(self):
-        
+
         self.node = Node(10, 15, 12, 15)
 
         self.assertEqual(self.node.splitNode(), False)
@@ -58,13 +59,8 @@ class TestNode(unittest.TestCase):
     def test_splitNode_split_successful(self):
 
         self.assertEqual(self.node.splitNode(), True)
-        
 
     def test_createChambers(self):
 
         dungeon = BSPDungeon()
         dungeon.generateMap(80, 50)
-        
-
-
-      

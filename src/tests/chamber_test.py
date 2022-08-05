@@ -8,7 +8,7 @@ class TestChamber(unittest.TestCase):
     def setUp(self):
 
         self.chamber = Chamber(10, 15, 20, 25)
-    
+
     def test_constructor_x1(self):
 
         self.assertEqual(self.chamber.x1, 10)

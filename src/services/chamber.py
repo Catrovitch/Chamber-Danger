@@ -1,4 +1,4 @@
-class Chamber: # used for the tunneling algorithm
+class Chamber:  # used for the tunneling algorithm
     def __init__(self, x, y, w, h):
         self.x1 = x
         self.y1 = y
@@ -9,4 +9,3 @@ class Chamber: # used for the tunneling algorithm
         center_x = int((self.x1 + self.x2)/2)
         center_y = int((self.y1 + self.y2)/2)
         return (center_x, center_y)
-

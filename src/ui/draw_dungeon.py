@@ -1,5 +1,6 @@
 import pygame
 
+
 def draw_dungeon(dungeon):
 
     pygame.init()
@@ -18,11 +19,13 @@ def draw_dungeon(dungeon):
             for y in range(dungeon.map_height):
                 for x in range(dungeon.map_width):
                     if dungeon.map[x][y] == 1:
-                        pygame.draw.rect(window, wall_colour, (square_x, square_y, square_x+10, square_y+10))
+                        pygame.draw.rect(
+                            window, wall_colour, (square_x, square_y, square_x+10, square_y+10))
                         square_x += 10
-                    
+
                     else:
-                        pygame.draw.rect(window, chamber_colour, (square_x, square_y, square_x+10, square_y+10))
+                        pygame.draw.rect(
+                            window, chamber_colour, (square_x, square_y, square_x+10, square_y+10))
                         square_x += 10
 
                 square_y += 10
