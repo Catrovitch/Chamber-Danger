@@ -4,5 +4,7 @@ This week I pretty much started my project from srcatch after talking with the c
 
 I have found it hard to find a proper balance for the project. In the OHTE course I made the mistake of planning a project which was too ambitious and which meant I didn't have the time to do it as well as I'd like to. This was the reason I thought I'd do something much more basic this time around, but then again I chose something that was too basic. I hope that what I have done now is at a proper level - not too basic, but not too ambitous either. The idea is still to make something simple that is easily built upon to achieve more complex results.  
 
+Since I had to start over I used quite a lot of time researching what I would do and how I would go about implementing BSP and Drunkard's Walk algorithm. Time spent: ca 18 hours.
+
 ## Week 3 Test coverage-report
 ![](./pictures/test_coverage_week3.png) 
