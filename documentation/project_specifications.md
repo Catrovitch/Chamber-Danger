@@ -11,13 +11,11 @@ The algorithm that will be used can be divided into roughly four steps.
 Steps:
 
 1. Generate an empty map of a given size.
-2. Randomly place out chambers that do not overlap.
-3. Connect the chambers.
+2. Use BSP to randomly, but evenly distribute rooms around the map.
+3. Connect the chambers either with straight corridors or through drunkard's walk algorithm.
 4. Visualize the dungeon.
 
 The dungeons will be stored as a python dictionary in which the key is a tuple of (x,y) coordinates and the value is 0 for a wall and 1 for open space.
-
-Big O: Uncertain.
 
 ## Input
 
