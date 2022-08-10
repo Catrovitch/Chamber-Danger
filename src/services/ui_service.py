@@ -63,7 +63,7 @@ class UiService():
         map_width = 1000
 
         while True:
-            map_height = int(input("Give map height (40-70): "))
+            map_height = int(input("Give map height (25-70): "))
             try:
                 map_height = int(map_height)
             except:
