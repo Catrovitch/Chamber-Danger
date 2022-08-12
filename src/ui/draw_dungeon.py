@@ -1,11 +1,14 @@
 import pygame
 
 
-def draw_dungeon(dungeon):
+def draw_dungeon(dungeon, map_height, map_width):
 
     pygame.init()
 
-    window = pygame.display.set_mode((1000, 700))
+    height = map_height*10
+    width = map_width*10
+
+    window = pygame.display.set_mode((width, height))
 
     wall_colour = (0, 0, 0)
     chamber_colour = (92, 92, 92)

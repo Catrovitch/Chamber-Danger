@@ -6,8 +6,9 @@ def generate_dungeon():
 
     ui = UiService()
     ui.dungeon_type()
-    draw_dungeon(ui.dungeon)
+    draw_dungeon(ui.dungeon, ui.dungeon.map_height, ui.dungeon.map_width)
 
 
 if __name__ == "__main__":
+
     generate_dungeon()

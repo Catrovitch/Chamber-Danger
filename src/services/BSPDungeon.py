@@ -78,3 +78,5 @@ class BSPDungeon:
         # prints out all node objects.
         for node in self._nodes:
             print(node)
+
+

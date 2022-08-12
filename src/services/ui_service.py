@@ -16,7 +16,7 @@ class UiService():
             dungeon_type = input(
                 "What type of dungeon should be generated? (1 for constructed, 2 for organic) ")
 
-            if (dungeon_type) in ("0", "1", "2"):
+            if (dungeon_type) in ("1", "2"):
                 break
 
         if dungeon_type == "1":
@@ -29,28 +29,25 @@ class UiService():
 
     def BSPDungeon(self):
 
-        map_height = 1000
-        map_width = 1000
+        map_height = 8
+        map_width = 10
+
+        map_size = 1000
 
         while True:
-            map_height = input("Give map height (25-70): ")
+            map_size = input("Give dungeon size (1-10): ")
+
             try:
-                map_height = int(map_height)
+                map_size = int(map_size)
             except:
                 continue
-
-            if 25 <= map_height <= 70:
+            
+            if 1 <= map_size <= 10:
                 break
 
-        while True:
-            map_width = input("Give map width (40-100): ")
-            try:
-                map_width = int(map_width)
-            except:
-                continue
-
-            if 40 <= map_width <= 100:
-                break
+            
+        map_height *= map_size
+        map_width *= map_size
 
         dungeon = BSPDungeon()
         dungeon.generateMap(map_width, map_height)
@@ -59,28 +56,29 @@ class UiService():
 
     def OrganicBSPDungeon(self):
 
-        map_height = 1000
-        map_width = 1000
+        map_height = 8
+        map_width = 10
+
+        map_size = 1000
 
         while True:
-            map_height = int(input("Give map height (25-70): "))
+            map_size = input("Give dungeon size (1-10): ")
+
             try:
-                map_height = int(map_height)
+                map_size = int(map_size)
             except:
                 continue
-            if 25 <= map_height <= 70:
+            
+            if 1 <= map_size <= 10:
                 break
 
-        while True:
-            map_width = int(input("Give map width (40-100): "))
-            try:
-                map_width = int(map_width)
-            except:
-                continue
-            if 40 <= map_width <= 100:
-                break
+            
+        map_height *= map_size
+        map_width *= map_size
 
         dungeon = OrganicBSPDungeon()
         dungeon.generateMap(map_width, map_height)
+
+        self.dungeon = dungeon
 
         self.dungeon = dungeon

@@ -2,7 +2,7 @@ from invoke import task
 
 @task
 def start(ctx):
-    ctx.run("python3 src/index.py", pty=True)
+    ctx.run("python3 src/generate_dungeon.py", pty=True)
 
 @task
 def test(ctx):
@@ -26,6 +26,10 @@ def coverage(ctx):
 @task(coverage)
 def coverage_report(ctx):
     ctx.run("coverage html", pty=True)
+
+@task
+def BSPDungeon_performance_test(ctx):
+    ctx.run("python3 src/performance_BSPDungeon.py", pty=True)
 
 @task
 def build(ctx):
