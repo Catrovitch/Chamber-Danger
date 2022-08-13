@@ -9,12 +9,13 @@ This is a project where I will create a dungeon generator. The idea is to create
  - [Week 1](./documentation/week_1_report.md)
  - [Week 2](./documentation/week_2_report.md)
  - [Week 3](./documentation/week_3_report.md)
+ - [Week 4](./documentation/week_4_report.md)
 
 ### Other
 
  - [Project Specifications](./documentation/project_specifications.md)
- - [Implementation document](./documentation/implentation_document.md) (to be implemented)
- - [Testing document](./documentation/testing_document.md) (to be implemented)
+ - [Implementation document](./documentation/implentation_document.md)
+ - [Testing document](./documentation/testing_document.md)
  - [User guide](./documentation/user_guide.md) (to be implemented)
 
 ## Installing
