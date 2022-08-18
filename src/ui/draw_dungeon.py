@@ -13,6 +13,8 @@ def draw_dungeon(dungeon, map_height, map_width):
     wall_colour = (0, 0, 0)
     chamber_colour = (92, 92, 92)
 
+    clock = pygame.time.Clock()
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -35,3 +37,5 @@ def draw_dungeon(dungeon, map_height, map_width):
                 square_x = 0
 
         pygame.display.flip()
+
+        clock.tick(1)
