@@ -9,12 +9,13 @@ The program follows the idea of seperation of concerns and simplicity while stil
 The main program is split into four main classes, a ui_service class and a function for visualization. The main  program is divided into two parts depending on wether the user wants to generate a more sterile sewer-like dungeon or a more organic limestone-cave-like dungeon. Depending on this decision the program will use either the normal BSPDungeon or OrganicBSPDungeon class. Both of these are structured in a similar way and differs mostly at the stage where chambers/rooms are to be connected. They both make use of the Node class and Chamber class. The Node class is the core of the BSP algorithm as it is used to create and store the binary tree through the Binary space partiitoning algorithm (BSP). The chamber class holds information about chamber dimensions and locations. When the random dungeon has been generated it is exported to the draw_dungeon function which visualizes the dungeon through the pygame module.
 
 ##### Visualization of the Project structure
+
 [](./pictures/project_strucutre.png)
 
 
 ## Big O
 
-The program is currently running at a O(n) linear time complexity. This is however not central to this program since it is viewed from a human perspective where the inputs of n are always so small that time complexity hardly matters. The focus will instead be on the quality and variation in dungeons that the program can produce. The O(n) time complexity is backed up by empirical testing (see [testing_document](./testing_document.md).
+The program is currently running at a O(n) linear time complexity. This is however not central to this program since it is viewed from a human perspective where the inputs of n are always so small that time complexity hardly matters. The focus will instead be on the quality and variation in dungeons that the program can produce. The O(n) time complexity is backed up by empirical testing (see [testing_document](./testing_document.md)).
 
 
 ## Improvements
