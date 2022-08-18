@@ -10,7 +10,7 @@ The main program is split into four main classes, a ui_service class and a funct
 
 ### Visualization of the Project structure
 
-[](./pictures/project_structure.png)
+[Project sructure](./pictures/project_structure.png)
 
 
 ## Big O
