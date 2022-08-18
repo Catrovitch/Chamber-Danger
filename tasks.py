@@ -24,11 +24,11 @@ def coverage(ctx):
 
 
 @task(coverage)
-def coverage_report(ctx):
+def coverageReport(ctx):
     ctx.run("coverage html", pty=True)
 
 @task
-def BSPDungeon_performance_test(ctx):
+def BSPDungeonPerformanceTest(ctx):
     ctx.run("python3 src/performance_BSPDungeon.py", pty=True)
 
 @task

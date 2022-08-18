@@ -33,7 +33,7 @@ class PerformanceBSPDungeon():
         width = 10*size
         height = 8*size
 
-        self.iterations = 10000
+        self.iterations = 100
 
         for i in range(self.iterations):
 
