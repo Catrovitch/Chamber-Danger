@@ -29,12 +29,12 @@ class TestBSPDungeon(unittest.TestCase):
 
         self.assertEqual(self.dungeon.map_height, 80)
 
-    def test_initate_map(self):
+    def test_initiate_map(self):
 
         self.dungeon.map_width = 100
         self.dungeon.map_height = 80
 
-        self.dungeon._initate_map()
+        self.dungeon._initiate_map()
 
         test = True
 

@@ -18,7 +18,7 @@ class BSPDungeon:
         self.map_width = map_width
         self.map_height = map_height
 
-        self._initate_map()
+        self._initiate_map()
 
         self._nodes = []
 
@@ -42,7 +42,7 @@ class BSPDungeon:
 
         return self.map
 
-    def _initate_map(self):
+    def _initiate_map(self):
 
         self.map = [[1
                      for y in range(self.map_height)]
@@ -82,5 +82,9 @@ class BSPDungeon:
         # prints out all node objects.
         for node in self._nodes:
             print(node)
+
+    def get_dungeon(self):
+
+        pass
 
 

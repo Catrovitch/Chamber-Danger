@@ -29,7 +29,7 @@ def coverageReport(ctx):
 
 @task
 def BSPDungeonPerformanceTest(ctx):
-    ctx.run("python3 src/performance_BSPDungeon.py", pty=True)
+    ctx.run("python3 src/performance_tests/performance_BSPDungeon.py", pty=True)
 
 @task
 def build(ctx):

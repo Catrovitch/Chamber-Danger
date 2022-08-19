@@ -20,9 +20,8 @@ class OrganicBSPDungeon:
         # Initializes/resets 2D list
         self.map_width = map_width
         self.map_height = map_height
-        self.map = [[1
-                     for y in range(map_height)]
-                    for x in range(map_width)]
+
+        self._initiate_map()
 
         self._nodes = []
 
@@ -36,8 +35,7 @@ class OrganicBSPDungeon:
             for node in self._nodes:
                 if (node.child_1 == None) and (node.child_2 == None):
                     if ((node.width > self.max_node_size) or
-                        (node.height > self.max_node_size) or
-                            (random.random() > 0.8)):
+                        (node.height > self.max_node_size)):
                         if (node.splitNode()):
                             self._nodes.append(node.child_1)
                             self._nodes.append(node.child_2)
@@ -47,6 +45,13 @@ class OrganicBSPDungeon:
         self.clean_map(map_width, map_height)
 
         return self.map
+
+    def _initiate_map(self):
+
+        self.map = [[1
+                     for y in range(self.map_height)]
+                    for x in range(self.map_width)]
+
 
     def createChamber(self, room):
         # sets the values in the map list which corresponds to the given chamber from 1 to 0

@@ -17,6 +17,42 @@ class TestBSPDungeon(unittest.TestCase):
 
         self.assertEqual(self.dungeon.chamber, None)
 
-    def test_generate_map(self):
+    def test_generateMap_map_width(self):
 
-        pass
+        self.dungeon.generateMap(100, 80)
+
+        self.assertEqual(self.dungeon.map_width, 100)
+
+    def test_generateMap_map_height(self):
+
+        self.dungeon.generateMap(100, 80)
+
+        self.assertEqual(self.dungeon.map_height, 80)
+
+    def test_initiate_map(self):
+
+        self.dungeon.map_width = 100
+        self.dungeon.map_height = 80
+
+        self.dungeon._initiate_map()
+
+        test = True
+
+        for row in range(100):
+            for item in range(80):
+                print(row, item)
+                if self.dungeon.map[row][item] != 1:
+                    test = False
+
+        self.assertEqual(test, True)
+
+    def test_node_size_is_max(self):
+
+        self.dungeon.max_node_size = 150
+
+        self.dungeon.generateMap(100, 80)
+
+        number_of_nodes = len(self.dungeon._nodes)
+
+        self.assertEqual(number_of_nodes, 1)
+
