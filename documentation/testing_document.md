@@ -4,9 +4,9 @@ This document holds information about the testing aspect of the program. It is d
 
 ## Normal testing
 
-The normal tests covers all the core-functionality of the program. At this point these tests cover the chamber class, the node class and partly the BSPDungeon class.
+The normal tests covers all the core-functionality of the program. At this point these tests cover the chamber class, the node class, the BSPDungeon class and the OrganicBspDungeon class.
 
-![](./pictures/coverage-report_week4.png)
+![](./pictures/test_coverage_week5.png)
 
 
 ## Performance testing
