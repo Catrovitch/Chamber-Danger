@@ -18,12 +18,28 @@ This is a project where I will create a dungeon generator. The idea is to create
  - [Project Specifications](./documentation/project_specifications.md)
  - [Implementation document](./documentation/implementation_document.md)
  - [Testing document](./documentation/testing_document.md)
- - [User guide](./documentation/user_guide.md) (to be implemented)
+ - [User guide](./documentation/user_guide.md)
 
 ## Installing
 
-...
+See [User guide](./documentation/user_guide.md) for more in-depth instructions.
 
+ 1. Clone or download the project.
+ 2. Make sure you have the correct version of python installed.
+ 3. Make sure you have Poetry installed.
+ 4. Install dependencies with command:
+```
+Poetry install
+```
+
+ 5. Start the program with command:
+
+```
+Poetry run invoke start
+```
+
+ 6. Enjoy!
+ 
 ## Testing
 
 A coverage-report can be produced with the command:
