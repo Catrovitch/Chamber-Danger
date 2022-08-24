@@ -11,7 +11,7 @@ This is a project where I will create a dungeon generator. The idea is to create
  - [Week 3](./documentation/week_3_report.md)
  - [Week 4](./documentation/week_4_report.md)
  - [week 5](./documentation/week_5_report.md)
-
+ - [week 6](./documentation/week_6_report.md)
 
 ### Other
 
