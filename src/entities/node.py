@@ -1,5 +1,5 @@
 import random
-from services.chamber import Chamber
+from entities.chamber import Chamber
 
 
 class Node:
@@ -14,6 +14,7 @@ class Node:
         self.child_2 = None
         self.chamber = None
         self.tunnel = None
+
 
     def splitNode(self):
 
@@ -57,6 +58,7 @@ class Node:
 
         return True
 
+
     def createChambers(self, dungeon):
 
         if (self.child_1) or (self.child_2):
@@ -72,14 +74,15 @@ class Node:
 
         else:
             # Create rooms in the end branches of the bsp tree
-            width = random.randint(dungeon.min_chamber_size, min(
-                dungeon.max_chamber_size, self.width-1))
-            height = random.randint(dungeon.min_chamber_size, min(
-                dungeon.max_chamber_size, self.height-1))
+            width = random.randint(dungeon.min_chamber_size, 
+                min(dungeon.max_chamber_size, self.width-1))
+            height = random.randint(dungeon.min_chamber_size,
+                min(dungeon.max_chamber_size, self.height-1))
             x = random.randint(self.x, self.x+(self.width-1)-width)
             y = random.randint(self.y, self.y+(self.height-1)-height)
             self.chamber = Chamber(x, y, width, height)
             dungeon.createChamber(self.chamber)
+
 
     def getChamber(self):
         if (self.chamber):

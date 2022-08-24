@@ -1,5 +1,5 @@
 import random
-from services.node import Node
+from entities.node import Node
 
 
 # === A BSP based dungeon connected by Drunkard's walk algorithm ===
@@ -16,6 +16,7 @@ class OrganicBSPDungeon:
         self.organic_level = 1
         self.fitting = 3
 
+    
     def generateMap(self, map_width, map_height):
         # Initializes/resets 2D list
         self.map_width = map_width
@@ -46,6 +47,7 @@ class OrganicBSPDungeon:
 
         return self.map
 
+    
     def _initiate_map(self):
 
         self.map = [[1
@@ -53,12 +55,14 @@ class OrganicBSPDungeon:
                     for x in range(self.map_width)]
 
 
+    
     def createChamber(self, room):
         # sets the values in the map list which corresponds to the given chamber from 1 to 0
         for x in range(room.x1 + 1, room.x2):
             for y in range(room.y1+1, room.y2):
                 self.map[x][y] = 0
 
+    
     def createTunnel(self, chamber1, chamber2):
         # run a heavily weighted drunkards walk algorithm
 
@@ -113,6 +117,7 @@ class OrganicBSPDungeon:
                 if self.map[drunk_x][drunk_y] == 1:
                     self.map[drunk_x][drunk_y] = 0
 
+    
     def clean_map(self, mapWidth, mapHeight):
         if (self.organic):
             for i in range(3):
@@ -125,6 +130,7 @@ class OrganicBSPDungeon:
                         if (self.map[x][y] == 0) and (self.getAdjacentWall(x, y) >= self.fitting):
                             self.map[x][y] = 1
 
+    
     def getAdjacentWall(self, x, y):
         # locates walls in all directions
         wall_count = 0

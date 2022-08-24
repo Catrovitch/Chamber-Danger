@@ -16,7 +16,7 @@ This is a project where I will create a dungeon generator. The idea is to create
 ### Other
 
  - [Project Specifications](./documentation/project_specifications.md)
- - [Implementation document](./documentation/implentation_document.md)
+ - [Implementation document](./documentation/implementation_document.md)
  - [Testing document](./documentation/testing_document.md)
  - [User guide](./documentation/user_guide.md) (to be implemented)
 

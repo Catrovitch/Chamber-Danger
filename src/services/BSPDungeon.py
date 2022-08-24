@@ -1,5 +1,5 @@
 import random
-from services.node import Node
+from entities.node import Node
 
 # ==== A BSP based dungeon ====
 
@@ -12,6 +12,15 @@ class BSPDungeon:
         self.max_chamber_size = 15
         self.min_chamber_size = 6
 
+
+    def splitNodes(self):
+
+        while True:
+            for node in self._nodes:
+                if node.child1 == None and node.child_2 == None:
+                    pass
+                    
+    
     def generateMap(self, map_width, map_height):
         # Initializes/resets 2D list
 
@@ -42,6 +51,7 @@ class BSPDungeon:
 
         return self.map
 
+    
     def _initiate_map(self):
 
         self.map = [[1
@@ -49,12 +59,14 @@ class BSPDungeon:
                     for x in range(self.map_width)]
 
 
+    
     def createChamber(self, chamber):
         # sets the values in the map lists which corresponds to the given chamber from 1 to 0
         for x in range(chamber.x1 + 1, chamber.x2):
             for y in range(chamber.y1+1, chamber.y2):
                 self.map[x][y] = 0
 
+    
     def createTunnel(self, chamber1, chamber2):
         # digs a tunnel from chamber1 to chamber2
         x1, y1 = chamber1.center()
@@ -68,23 +80,14 @@ class BSPDungeon:
             self.createVerticalTunnel(y1, y2, x1)
             self.createHorizontalTunnel(x1, x2, y2)
 
+    
     def createHorizontalTunnel(self, x1, x2, y):
 
         for x in range(min(x1, x2), max(x1, x2)+1):
             self.map[x][y] = 0
 
+    
     def createVerticalTunnel(self, y1, y2, x):
 
         for y in range(min(y1, y2), max(y1, y2)+1):
             self.map[x][y] = 0
-
-    def get_nodes(self):
-        # prints out all node objects.
-        for node in self._nodes:
-            print(node)
-
-    def get_dungeon(self):
-
-        pass
-
-

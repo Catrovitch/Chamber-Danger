@@ -8,6 +8,7 @@ class UiService():
 
         pass
 
+    
     def dungeon_type(self):
 
         dungeon_type = None
@@ -27,6 +28,7 @@ class UiService():
 
             self.OrganicBSPDungeon()
 
+    
     def BSPDungeon(self):
 
         map_height = 8
@@ -54,6 +56,7 @@ class UiService():
 
         self.dungeon = dungeon
 
+    
     def OrganicBSPDungeon(self):
 
         map_height = 8
