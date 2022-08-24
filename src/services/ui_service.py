@@ -9,9 +9,12 @@ class UiService():
         pass
 
     
-    def dungeon_type(self):
+    def dungeon_type_and_size(self):
 
         dungeon_type = None
+
+        map_height = 8
+        map_width = 10
 
         while True:
             dungeon_type = input(
@@ -20,68 +23,28 @@ class UiService():
             if (dungeon_type) in ("1", "2"):
                 break
 
+        while True:
+            map_size = input("Give dungeon size (1-10): ")
+
+            try:
+                map_size = int(map_size)
+            except:
+                continue
+            
+            if 1 <= map_size <= 10:
+                break
+           
+        map_height *= map_size
+        map_width *= map_size
+
         if dungeon_type == "1":
 
-            self.BSPDungeon()
+            dungeon = BSPDungeon()
+            dungeon.generateMap(map_width, map_height)
 
         if dungeon_type == "2":
 
-            self.OrganicBSPDungeon()
-
-    
-    def BSPDungeon(self):
-
-        map_height = 8
-        map_width = 10
-
-        map_size = 1000
-
-        while True:
-            map_size = input("Give dungeon size (1-10): ")
-
-            try:
-                map_size = int(map_size)
-            except:
-                continue
-            
-            if 1 <= map_size <= 10:
-                break
-
-            
-        map_height *= map_size
-        map_width *= map_size
-
-        dungeon = BSPDungeon()
-        dungeon.generateMap(map_width, map_height)
-
-        self.dungeon = dungeon
-
-    
-    def OrganicBSPDungeon(self):
-
-        map_height = 8
-        map_width = 10
-
-        map_size = 1000
-
-        while True:
-            map_size = input("Give dungeon size (1-10): ")
-
-            try:
-                map_size = int(map_size)
-            except:
-                continue
-            
-            if 1 <= map_size <= 10:
-                break
-
-            
-        map_height *= map_size
-        map_width *= map_size
-
-        dungeon = OrganicBSPDungeon()
-        dungeon.generateMap(map_width, map_height)
-
-        self.dungeon = dungeon
+            dungeon = OrganicBSPDungeon()
+            dungeon.generateMap(map_width, map_height)
 
         self.dungeon = dungeon

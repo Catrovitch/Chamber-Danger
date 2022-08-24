@@ -1,6 +1,6 @@
 
 import unittest
-from services.chamber import Chamber
+from entities.chamber import Chamber
 
 
 class TestChamber(unittest.TestCase):

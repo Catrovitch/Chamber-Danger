@@ -12,14 +12,6 @@ class BSPDungeon:
         self.max_chamber_size = 15
         self.min_chamber_size = 6
 
-
-    def splitNodes(self):
-
-        while True:
-            for node in self._nodes:
-                if node.child1 == None and node.child_2 == None:
-                    pass
-                    
     
     def generateMap(self, map_width, map_height):
         # Initializes/resets 2D list

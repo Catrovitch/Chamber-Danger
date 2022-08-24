@@ -1,6 +1,6 @@
 
 import unittest
-from services.node import Node
+from entities.node import Node
 from services.BSPDungeon import BSPDungeon
 
 

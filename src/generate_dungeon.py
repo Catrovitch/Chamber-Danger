@@ -5,7 +5,7 @@ from ui.draw_dungeon import draw_dungeon
 def generate_dungeon():
 
     ui = UiService()
-    ui.dungeon_type()
+    ui.dungeon_type_and_size()
     draw_dungeon(ui.dungeon, ui.dungeon.map_height, ui.dungeon.map_width)
 
 
