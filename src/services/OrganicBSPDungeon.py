@@ -5,7 +5,7 @@ from entities.node import Node
 # === A BSP based dungeon connected by Drunkard's walk algorithm ===
 class OrganicBSPDungeon:
 
-    def __init__(self):
+    def __init__(self, max_node_size=24, max_chamber_size=15, min_chamber_size=5):
 
         self.map = []
         self.chamber = None
@@ -17,16 +17,17 @@ class OrganicBSPDungeon:
         self.fitting = 3
 
     
-    def generateMap(self, map_width, map_height):
+    def generateMap(self):
         # Initializes/resets 2D list
-        self.map_width = map_width
-        self.map_height = map_height
+
+        self.map_width = 100
+        self.map_height = 80
 
         self._initiate_map()
 
         self._nodes = []
 
-        root_node = Node(0, 0, map_width, map_height)
+        root_node = Node(0, 0, self.map_width, self.map_height)
         self._nodes.append(root_node)
 
         splitted = True
@@ -43,7 +44,7 @@ class OrganicBSPDungeon:
                             splitted = True
 
         root_node.createChambers(self)
-        self.clean_map(map_width, map_height)
+        self.clean_map(self.map_width, self.map_height)
 
         return self.map
 

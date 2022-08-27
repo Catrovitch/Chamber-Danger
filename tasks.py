@@ -34,3 +34,11 @@ def coverageReport(ctx):
 def BSPDungeonPerformanceTest(ctx):
     ctx.run("python3 src/performance_tests/performance_BSPDungeon.py", pty=True)
 
+@task
+def OrganicDungeonPerformanceTest(ctx):
+    ctx.run("python3 src/performance_tests/performance_OrganicBSPDungeon.py", pty=True)
+
+
+@task
+def PlaceHolder(ctx):
+    ctx.run("python3 src/performance_tests/placeholder.py", pty=True)

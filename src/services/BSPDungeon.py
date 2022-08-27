@@ -5,25 +5,25 @@ from entities.node import Node
 
 
 class BSPDungeon:
-    def __init__(self):
+    def __init__(self, max_node_size=24, max_chamber_size=15, min_chamber_size=5):
         self.map = []
         self.chamber = None
-        self.max_node_size = 24
-        self.max_chamber_size = 15
-        self.min_chamber_size = 6
+        self.max_node_size = max_node_size
+        self.max_chamber_size = max_chamber_size
+        self.min_chamber_size = min_chamber_size
 
     
-    def generateMap(self, map_width, map_height):
+    def generateMap(self):
         # Initializes/resets 2D list
 
-        self.map_width = map_width
-        self.map_height = map_height
+        self.map_width = 100
+        self.map_height = 80
 
         self._initiate_map()
 
         self._nodes = []
 
-        root_node = Node(0, 0, map_width, map_height)
+        root_node = Node(0, 0, self.map_width, self.map_height)
         self._nodes.append(root_node)
 
         splitted = True

@@ -1,4 +1,3 @@
-
 import unittest
 from services.OrganicBSPDungeon import OrganicBSPDungeon
 
@@ -19,20 +18,19 @@ class TestBSPDungeon(unittest.TestCase):
 
     def test_generateMap_map_width(self):
 
-        self.dungeon.generateMap(100, 80)
+        self.dungeon.generateMap()
 
         self.assertEqual(self.dungeon.map_width, 100)
 
     def test_generateMap_map_height(self):
 
-        self.dungeon.generateMap(100, 80)
+        self.dungeon.generateMap()
 
         self.assertEqual(self.dungeon.map_height, 80)
 
     def test_initiate_map(self):
 
-        self.dungeon.map_width = 100
-        self.dungeon.map_height = 80
+        self.dungeon.generateMap()
 
         self.dungeon._initiate_map()
 
@@ -48,9 +46,10 @@ class TestBSPDungeon(unittest.TestCase):
 
     def test_node_size_is_max(self):
 
-        self.dungeon.max_node_size = 150
 
-        self.dungeon.generateMap(100, 80)
+        self.dungeon.max_node_size = 150
+        
+        self.dungeon.generateMap()
 
         number_of_nodes = len(self.dungeon._nodes)
 

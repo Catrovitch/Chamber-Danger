@@ -1,17 +1,21 @@
 import pygame
 
+from ui.ui_entities.text import Text
+
 class TickBox:
 
-    def __init__(self, x, y):
+    def __init__(self, x, y, title):
 
         self.colour = (220, 149, 149)
 
         self.ticked = False
-        self.width = 10
-        self.height = 10
+        self.width = 13
+        self.height = 13
 
         self.x = x
         self.y = y
+
+        self.title = Text(title, self.x-190, self.y-5, 20)
 
     def is_clicked(self, pos):
 
@@ -26,7 +30,9 @@ class TickBox:
 
         self.render_border(display)
         
-        self.render_tickbox(display)    
+        self.render_tickbox(display)
+
+        self.title.blit(display) 
 
         if self.ticked:
             
@@ -36,10 +42,10 @@ class TickBox:
     def render_border(self, display):
 
         border_colour = (56, 56, 56)
-        border_x = self.x-3
-        border_y = self.y-3
-        border_width = 16
-        border_height = 16
+        border_x = self.x-4
+        border_y = self.y-4
+        border_width = 20
+        border_height = 20
 
         pygame.draw.rect(display, (border_colour), (border_x, border_y, border_width, border_height))
 
@@ -59,8 +65,8 @@ class TickBox:
         line2_start = (self.x, self.y+self.height)
         line2_end = (self.x+self.width, self.y)
 
-        pygame.draw.line(display, (x_colour), (line1_start), (line1_end), 2)
-        pygame.draw.line(display, (x_colour), (line2_start), (line2_end), 2)
+        pygame.draw.line(display, (x_colour), (line1_start), (line1_end), 3)
+        pygame.draw.line(display, (x_colour), (line2_start), (line2_end), 3)
 
 
 

@@ -1,14 +1,15 @@
 from json.encoder import INFINITY
 from matplotlib import pyplot as plt
 import time
-from services.BSPDungeon import BSPDungeon
+
+from services.OrganicBSPDungeon import OrganicBSPDungeon
 
 
 class PerformanceBSPDungeon():
 
     def __init__(self):
 
-        self.dungeon = BSPDungeon()
+        self.dungeon = OrganicBSPDungeon()
 
         self.size = []
         self.best = []
@@ -53,7 +54,7 @@ class PerformanceBSPDungeon():
 
             aggregated_time += execution_time
 
-            self.dungeon = BSPDungeon()
+            self.dungeon = OrganicBSPDungeon()
 
         average = aggregated_time/self.iterations
 
@@ -66,18 +67,14 @@ class PerformanceBSPDungeon():
 
     def make_plot(self):
 
-        plt.plot(self.size, self.average, color= "blue")
-        plt.plot(self.size, self.worst, color= "red")
-        plt.plot(self.size, self.best, color="green")
-        plt.title(f"Best (green), worst (red) and average (blue) execution-time for BFSDungeon_generation of all dungeon sizes\nDone with a {self.iterations} iterations", fontsize=14)
+        plt.plot(self.size, self.worst, color= "red", label = "worst")
+        plt.plot(self.size, self.average, color= "blue", label = "average")
+        plt.plot(self.size, self.best, color="green", label = "best")
+        plt.title(f"Execution-time for OrganicBSPDungeon_generation of all dungeon sizes\nDone with a {self.iterations} iterations", fontsize=14)
         plt.xlabel("Amount of individual tiles in dungeon", fontsize=14)
         plt.ylabel("Execution-time", fontsize=14)
         plt.grid(True)
-        plt.show()
+        plt.legend()
+        plt.savefig('./documentation/pictures/OrganicBSPDungeon_performance_test.png', transparent=False, dpi=80, bbox_inches="tight")
 
 
-if __name__=="__main__":
-
-    performance_bspdungeon = PerformanceBSPDungeon()
-
-    performance_bspdungeon.execute_test()

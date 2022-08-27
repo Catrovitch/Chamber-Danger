@@ -6,22 +6,31 @@ from ui.ui_entities.text import Text
 
 class Sizeline:
 
-    def __init__(self, start_x, end_x, y):
+    def __init__(self, start_x, end_x, y, title, spectrum):
 
         
         self.start_x = start_x
         self.end_x = end_x
         self.y = y
 
+        mid_x = (self.start_x+self.end_x)//2
+
         self.line_length = self.end_x-self.start_x
 
-        self.interval_size = self.line_length/9
+        self.min_size = spectrum[0]
+        self.max_size = spectrum[1]
+
+        self.interval_size = self.line_length/(self.max_size-self.min_size)
 
         self.intervals = self.produce_intervals()
     
-        self.button = Button(end_x, y-12, 15, 25, "")
+        self.button = Button(mid_x, y-12, 15, 25, "")
 
-        self.size_text = Text("10", 1310, 250, 23)
+        mid_point = (self.min_size+self.max_size)//2
+
+        self.title = Text(title, self.start_x, self.y-60, 23)
+        self.size_text = Text(str(mid_point), self.end_x-15, self.y-60, 23)
+
         self.size = 10
 
         self.colour = (45, 45, 45)
@@ -32,7 +41,7 @@ class Sizeline:
         interval_list = []
         limit = self.start_x + (self.interval_size/2)
 
-        for i in range(10):
+        for i in range(self.max_size-self.min_size+1):
             interval = limit + i*self.interval_size
             interval_list.append(interval)
 
@@ -48,7 +57,7 @@ class Sizeline:
         if self.y-15 > y or y > self.y+15:
             return
 
-        size = 0
+        size = self.min_size-1
 
         for limit in self.intervals:
             size += 1
@@ -68,6 +77,10 @@ class Sizeline:
         self.render_intervals(display)
 
         self.button.render(display)
+
+        self.title.blit(display)
+        
+        self.size_text.blit(display)
 
 
     def render_line(self, display):

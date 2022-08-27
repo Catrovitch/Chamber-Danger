@@ -63,4 +63,3 @@ class TestNode(unittest.TestCase):
     def test_createChambers(self):
 
         dungeon = BSPDungeon()
-        dungeon.generateMap(80, 50)
