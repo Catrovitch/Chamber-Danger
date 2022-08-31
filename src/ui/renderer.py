@@ -4,6 +4,7 @@ from ui.ui_entities.size_line import Sizeline
 from ui.text_holder import TextHolder
 from ui.tick_box import TickBox
 from ui.ui_entities.button import Button
+from ui.ui_entities.text import Text
 
 
 class Renderer:
@@ -98,6 +99,49 @@ class Renderer:
             square_y += 10
             square_x = 0
 
+
+    def render_drunkardswalk(self, dungeon):
+
+        wall_colour = (50, 50, 50)
+
+        square_x = 0
+        square_y = 0
+        
+        for y in range(dungeon.map_height):
+            for x in range(dungeon.map_width):
+                if dungeon.drunkardswalk[x][y] == 1:
+                    pygame.draw.rect(
+                        self.display, wall_colour, (square_x, square_y, square_x+10, square_y+10))
+                    square_x += 10
+
+                else:
+                    pygame.draw.rect(
+                        self.display, dungeon.drunkardswalk[x][y], (square_x, square_y, square_x+10, square_y+10))
+                    square_x += 10
+
+            square_y += 10
+            square_x = 0
+
+    def render_corridors(self, dungeon):
+
+        for corridor in dungeon.corridors:
+                pygame.draw.line(self.display, (20, 20, 20), (corridor.x1*10+4, corridor.y1*10+4), (corridor.x2*10+4, corridor.y2*10+4), 16)
+                pygame.draw.line(self.display, (corridor.colour), (corridor.x1*10+5, corridor.y1*10+5), (corridor.x2*10+5, corridor.y2*10+5), 8)
+
+
+    def render_chambers(self, dungeon):
+
+        for chamber in dungeon.chambers:
+            pygame.draw.rect(self.display, (chamber.colour), (chamber.x1*10, chamber.y1*10, chamber.width*10, chamber.height*10))
+            chamber_number = Text(str(chamber.number), chamber.x1*10, chamber.y1*10, 24)
+            chamber_number.blit(self.display)
+
+    
+    def render_graph(self, dungeon):
+
+        for corridor in dungeon.graph_visualizer:
+            pygame.draw.line(self.display, (255,255,255), (corridor.x1*10-1, corridor.y1*10-1), (corridor.x2*10-1, corridor.y2*10-1), 8)
+            pygame.draw.line(self.display, (corridor.colour), (corridor.x1*10, corridor.y1*10), (corridor.x2*10, corridor.y2*10), 5)
 
     def render_all(self):
 

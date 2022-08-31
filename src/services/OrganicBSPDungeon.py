@@ -1,5 +1,6 @@
 import random
 from entities.node import Node
+from entities.corridor import Corridor
 
 
 # === A BSP based dungeon connected by Drunkard's walk algorithm ===
@@ -16,6 +17,11 @@ class OrganicBSPDungeon:
         self.organic_level = 1.
         self.fitting = 3
 
+        self.chambers = []
+        self.drunkardswalk = []
+        self.graph_visualizer = []
+
+
     
     def generateMap(self):
         # Initializes/resets 2D list
@@ -27,7 +33,7 @@ class OrganicBSPDungeon:
 
         self._nodes = []
 
-        root_node = Node(0, 0, self.map_width, self.map_height)
+        root_node = Node(0, 0, self.map_width, self.map_height, 0)
         self._nodes.append(root_node)
 
         splitted = True
@@ -55,13 +61,18 @@ class OrganicBSPDungeon:
                      for y in range(self.map_height)]
                     for x in range(self.map_width)]
 
+        self.drunkardswalk = [[1
+                     for y in range(self.map_height)]
+                    for x in range(self.map_width)]
 
     
-    def createChamber(self, room):
+    def createChamber(self, chamber):
         # sets the values in the map list which corresponds to the given chamber from 1 to 0
-        for x in range(room.x1 + 1, room.x2):
-            for y in range(room.y1+1, room.y2):
+        for x in range(chamber.x1 + 1, chamber.x2):
+            for y in range(chamber.y1+1, chamber.y2):
                 self.map[x][y] = 0
+
+        self.chambers.append(chamber)
 
     
     def createTunnel(self, chamber1, chamber2):
@@ -69,6 +80,9 @@ class OrganicBSPDungeon:
 
         drunk_x, drunk_y = chamber2.center()
         goal_x, goal_y = chamber1.center()
+
+        x1, y1 = chamber1.center()
+        x2, y2 = chamber2.center()
 
         while not (chamber1.x1 <= drunk_x <= chamber1.x2) or not (chamber1.y1 < drunk_y < chamber1.y2):
             # Choose the direction of the drunk
@@ -117,8 +131,12 @@ class OrganicBSPDungeon:
                 drunk_y += h_y
                 if self.map[drunk_x][drunk_y] == 1:
                     self.map[drunk_x][drunk_y] = 0
+                    self.drunkardswalk[drunk_x][drunk_y] = chamber1.colour
 
-    
+        self.graph_visualizer.append(Corridor(chamber1, chamber2, chamber1.colour, x1, y1, x2, y2))
+
+
+
     def clean_map(self, mapWidth, mapHeight):
         if (self.organic):
             for i in range(3):

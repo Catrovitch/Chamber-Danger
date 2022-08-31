@@ -125,7 +125,7 @@ class UI:
                             self.dungeon = OrganicBSPDungeon(dungeon_size, max_chamber_size, min_chamber_size)
                             self.dungeon.generateMap()
                             dungeon_generated = True        
-                
+                            render_dungeon = True
                 if event.type == pygame.MOUSEBUTTONUP:
 
                     self.click = False
@@ -141,21 +141,22 @@ class UI:
                     self.renderer.render_dungeon(self.dungeon)
                     render_dungeon = False
                 
-                if show_corridors:
-                    for corridor in self.dungeon.corridors:
-                        pygame.draw.line(self.display, (20, 20, 20), (corridor.x1*10+4, corridor.y1*10+4), (corridor.x2*10+4, corridor.y2*10+4), 16)
-                        pygame.draw.line(self.display, (corridor.colour), (corridor.x1*10+5, corridor.y1*10+5), (corridor.x2*10+5, corridor.y2*10+5), 8)
-                if show_chambers:
-                    for chamber in self.dungeon.chambers:
-                        pygame.draw.rect(self.display, (chamber.colour), (chamber.x1*10, chamber.y1*10, chamber.width*10, chamber.height*10))
-                        chamber_number = Text(str(chamber.number), chamber.x1*10, chamber.y1*10, 24)
-                        chamber_number.blit(self.display)
+                if show_corridors and self.renderer.industrial_tickbox.ticked:
+                    self.renderer.render_corridors(self.dungeon)
+
+
+                if show_corridors and self.renderer.organic_tickbox.ticked:
+                    self.renderer.render_drunkardswalk(self.dungeon)
+
                     
+                if show_chambers:
+                    self.renderer.render_chambers(self.dungeon)
+
+
                 if show_graph:
-                    for corridor in self.dungeon.graph_visualizer:
-                        pygame.draw.line(self.display, (255,255,255), (corridor.x1*10-1, corridor.y1*10-1), (corridor.x2*10-1, corridor.y2*10-1), 8)
-                        pygame.draw.line(self.display, (corridor.colour), (corridor.x1*10, corridor.y1*10), (corridor.x2*10, corridor.y2*10), 5)
-                        
+                    self.renderer.render_graph(self.dungeon)
+
+
             self.renderer.render_all()
 
             pygame.display.flip()

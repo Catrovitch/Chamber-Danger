@@ -1,5 +1,9 @@
 class Corridor:
 
+    """This class holds information about the graph that is created by the BSP algorithm. 
+        It is used by the GUI to visualize the paths of the graph.
+    """
+
     def __init__(self, parent, child, colour, x1, y1, x2, y2):
 
         self.parent = parent
