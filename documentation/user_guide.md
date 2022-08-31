@@ -108,6 +108,7 @@ Poetry run invoke start
 
  -  The "Show chambes" will visualize a separate layer which only visualizes the chambers in the dungeon. The number at the left upper corner of the chamber indicates at what depth the chamber was generated in the BSP algorithm. The higher the number is the deeper in the BSP tree the chamber is located. 
  -  The "Show corridors" will visualize a separate layer which only visualizes the corridors between the chambers. These are colour coded according to the parent chamber.
+ -  The "Show dungeon depth" will visualize the depth of all chambers according to how deep in the BSP tree they are found. This can also be seen as the integer at the upper left corner. (same as "Show chambers"). The deeper the chamber is located the darker the colour.
  -  The "Show graph" will visualize a separate layer which only visualizes the vertices of the BSP tree. This gives a clearer indication on which chambers are actually connected, since the basic visualization may confuse this matter since many corridors overlap each other. The "Show chambers" and "Show corridors" layers can be of help, but the "Show graph" should definetly clear things up.
 
 5. Some additional variables. These can not be tinkered with after genration. Generate a new dungeon to play with these.
