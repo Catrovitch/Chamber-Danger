@@ -25,6 +25,7 @@ class UI:
         render_dungeon = False
         show_corridors = False
         show_graph = False
+        show_dungeon_depth = False
         self.click = False
 
         self.display.fill((50, 50, 50))
@@ -81,6 +82,17 @@ class UI:
                             show_graph = False
                             render_dungeon = True
 
+                    if self.renderer.dungeon_depth.is_clicked(pos):
+
+                        if self.renderer.dungeon_depth.ticked == False:
+                            self.renderer.dungeon_depth.ticked = True
+                            show_dungeon_depth = True
+
+                        elif self.renderer.dungeon_depth.ticked == True:
+                            self.renderer.dungeon_depth.ticked = False
+                            show_dungeon_depth = False
+                            render_dungeon = True
+
                     self.renderer.dungeon_sizeline.update_button_and_size(pos)
 
                     self.renderer.max_chamber_size_sizeline.update_button_and_size(
@@ -123,6 +135,9 @@ class UI:
                     self.renderer.render_dungeon_background()
                     self.renderer.render_dungeon(self.dungeon)
                     render_dungeon = False
+
+                if show_dungeon_depth and self.renderer.dungeon_depth.ticked:
+                    self.renderer.render_depth_level_chambers(self.dungeon)
 
                 if show_corridors and self.renderer.industrial_tickbox.ticked:
                     self.renderer.render_corridors(self.dungeon)

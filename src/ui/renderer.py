@@ -18,9 +18,11 @@ class Renderer:
         self.industrial_tickbox = TickBox(1280, 148, "Industrial dungeon: ")
         self.organic_tickbox = TickBox(1280, 178, "Organic dungeon: ")
 
-        self.chambers_tickbox = TickBox(1280, 228, "Show chambers")
-        self.corridors_tickbox = TickBox(1280, 258, "Show corridors")
-        self.graph_tickbox = TickBox(1280, 300, "Show Graph")
+        self.chambers_tickbox = TickBox(1280, 220, "Show chambers")
+        self.corridors_tickbox = TickBox(1280, 245, "Show corridors")
+        self.dungeon_depth = TickBox(1280, 270, "Show dungeon depth")
+        self.graph_tickbox = TickBox(1280, 295, "Show Graph")
+
 
         self.dungeon_sizeline = Sizeline(
             1080, 1320, 420, "Choose dungeon size:", (5, 35))
@@ -67,6 +69,7 @@ class Renderer:
         self.chambers_tickbox.render(self.display)
         self.corridors_tickbox.render(self.display)
         self.graph_tickbox.render(self.display)
+        self.dungeon_depth.render(self.display)
 
     def render_dungeon_sizeline(self):
 
@@ -136,10 +139,12 @@ class Renderer:
         for chamber in dungeon.chambers:
             pygame.draw.rect(self.display, (chamber.colour), (chamber.x1*10,
                              chamber.y1*10, chamber.width*10, chamber.height*10))
+            
             chamber_number = Text(str(chamber.number),
                                   chamber.x1*10, chamber.y1*10, 24)
             chamber_number.blit(self.display)
 
+                            
     def render_graph(self, dungeon):
 
         for corridor in dungeon.graph_visualizer:
@@ -147,6 +152,17 @@ class Renderer:
                              corridor.y1*10-1), (corridor.x2*10-1, corridor.y2*10-1), 8)
             pygame.draw.line(self.display, (corridor.colour), (corridor.x1*10,
                              corridor.y1*10), (corridor.x2*10, corridor.y2*10), 5)
+
+    def render_depth_level_chambers(self, dungeon):
+
+        for chamber in dungeon.chambers:
+            pygame.draw.rect(self.display, (chamber.depth_colour), (chamber.x1*10,
+                             chamber.y1*10, chamber.width*10, chamber.height*10))
+
+            chamber_number = Text(str(chamber.number),
+                                  chamber.x1*10, chamber.y1*10, 24)
+            chamber_number.blit(self.display)
+
 
     def render_all(self):
 
