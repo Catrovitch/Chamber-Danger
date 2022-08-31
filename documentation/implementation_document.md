@@ -20,7 +20,7 @@ The program is currently running at a O(n) linear time complexity. This is howev
 
 ## Improvements
 
-There is ofcourse always room for improvement. The focus of the project was to create a solid program that can produce two differing dungeons. This the project achieves. The dungeons uses different algorithms to achieve this and the result is very different. Improvements could be for example a third kind of dungeo, a combiantion of two different techniques or even the implementation of a dungeon that also uses the z-plane. 
+There is ofcourse always room for improvement. The focus of the project was to create a solid program that can produce two differing dungeons. This the project achieves. The dungeons uses different algorithms to achieve this and the result is very different. Improvements could be for example a third kind of dungeon, a combiantion of two different techniques.
 
 
 ## Sources
