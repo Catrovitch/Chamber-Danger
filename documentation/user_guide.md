@@ -99,10 +99,21 @@ This installs all the correct dependencies.
 Poetry run invoke start
 ```
 
-2. After this you are asked by the program what type of dungeon you want to generate. Type 1 for a dungeon with straight corridors and 2 for a more organic look.
+2. The program starts a graphical user interface where you can mark some selection according to what sort and size of dungeon you want to create. 
 
-3. The program then asks you how big the dungeon should be at a scale from 1-10. Answer what you want.
 
-4. The program will now generate a dungeon of your chosen type and size.
+3 Tick the box for either industrial or organic dungeon. After this you can choose to show various layers or leave them all off.
 
-5. Close the program by hitting the "x" at the right corner of the window.
+4. Some additional layers. These can be tinkered with at any time.
+
+ -  The "Show chambes" will visualize a separate layer which only visualizes the chambers in the dungeon. The number at the left upper corner of the chamber indicates at what depth the chamber was generated in the BSP algorithm. The higher the number is the deeper in the BSP tree the chamber is located. 
+ -  The "Show corridors" will visualize a separate layer which only visualizes the corridors between the chambers. These are colour coded according to the parent chamber.
+ -  The "Show graph" will visualize a separate layer which only visualizes the vertices of the BSP tree. This gives a clearer indication on which chambers are actually connected, since the basic visualization may confuse this matter since many corridors overlap each other. The "Show chambers" and "Show corridors" layers can be of help, but the "Show graph" should definetly clear things up.
+
+5. Some additional variables. These can not be tinkered with after genration. Generate a new dungeon to play with these.
+
+ -  The "Choose dungeon density" parameter tinkers with the BSP-algorithm's variable "max_node_size" This means that the larger this number is the larger the subsets of the BSP divisions will be in general. This will lead to a more spread out dungeon with less rooms and longer corridors. 
+ -  The "Choose min chamber size" parameter indicates the minimum size of chambers in the dungeon.
+ -  The "Choose max chamber size" parameter indicates the maximum size of chambers in the dungeon.
+  
+6. Close the program by hitting the "x" at the right corner of the window.
