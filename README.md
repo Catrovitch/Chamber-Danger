@@ -12,6 +12,7 @@ This is a project where I will create a dungeon generator. The idea is to create
  - [Week 4](./documentation/week_4_report.md)
  - [week 5](./documentation/week_5_report.md)
  - [week 6](./documentation/week_6_report.md)
+ - [Final report](./documentation/final_report.md)
 
 ### Other
 
@@ -48,3 +49,18 @@ A coverage-report can be produced with the command:
 poetry run invoke coverage-report
 ```
 
+## Pylint
+
+Pylint has been used to some extent in this project, but not fully.
+
+A pylint report can be generated with command:
+
+```
+poetry run invoke lint
+```
+
+Formatting can be achieved with command:
+
+```
+poetry run invoke format
+```
