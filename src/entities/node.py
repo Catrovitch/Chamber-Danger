@@ -4,11 +4,14 @@ from entities.chamber import Chamber
 
 class Node:
 
-    def __init__(self, x, y, width, height):
+    def __init__(self, x, y, width, height, node_nr):
         self.x = x
         self.y = y
         self.width = width
         self.height = height
+
+        self.node_nr = node_nr
+
         self.min_node_size = 10
         self.child_1 = None
         self.child_2 = None
@@ -48,13 +51,13 @@ class Node:
         split = random.randint(self.min_node_size, max)
 
         if (horizontal_split):
-            self.child_1 = Node(self.x, self.y, self.width, split)
+            self.child_1 = Node(self.x, self.y, self.width, split, self.node_nr+1)
             self.child_2 = Node(self.x, self.y+split,
-                                self.width, self.height-split)
+                                self.width, self.height-split, self.node_nr+2)
         else:
-            self.child_1 = Node(self.x, self.y, split, self.height)
+            self.child_1 = Node(self.x, self.y, split, self.height, self.node_nr+1)
             self.child_2 = Node(self.x + split, self.y,
-                                self.width-split, self.height)
+                                self.width-split, self.height, self.node_nr+2)
 
         return True
 
@@ -80,7 +83,7 @@ class Node:
                 min(dungeon.max_chamber_size, self.height-1))
             x = random.randint(self.x, self.x+(self.width-1)-width)
             y = random.randint(self.y, self.y+(self.height-1)-height)
-            self.chamber = Chamber(x, y, width, height)
+            self.chamber = Chamber(x, y, width, height, self.node_nr)
             dungeon.createChamber(self.chamber)
 
 

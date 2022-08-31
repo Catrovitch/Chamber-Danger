@@ -1,3 +1,4 @@
+from re import M
 import pygame
 
 from ui.ui_entities.button import Button
@@ -31,7 +32,7 @@ class Sizeline:
         self.title = Text(title, self.start_x, self.y-60, 23)
         self.size_text = Text(str(mid_point), self.end_x-15, self.y-60, 23)
 
-        self.size = 10
+        self.size = mid_point
 
         self.colour = (45, 45, 45)
 

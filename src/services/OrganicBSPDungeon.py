@@ -13,7 +13,7 @@ class OrganicBSPDungeon:
         self.max_chamber_size = 15
         self.min_chamber_size = 6
         self.organic = True
-        self.organic_level = 1
+        self.organic_level = 1.
         self.fitting = 3
 
     
@@ -65,7 +65,7 @@ class OrganicBSPDungeon:
 
     
     def createTunnel(self, chamber1, chamber2):
-        # run a heavily weighted drunkards walk algorithm
+        # heavily weighted drunkards walk algorithm
 
         drunk_x, drunk_y = chamber2.center()
         goal_x, goal_y = chamber1.center()

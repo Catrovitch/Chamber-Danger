@@ -17,7 +17,12 @@ class Renderer:
         self.industrial_tickbox = TickBox(1280, 148, "Industrial dungeon: ")
         self.organic_tickbox = TickBox(1280, 178, "Organic dungeon: ")
 
-        self.dungeon_sizeline = Sizeline(1080, 1320, 420, "Choose dungeon size:", (15, 35))
+
+        self.chambers_tickbox = TickBox(1280, 228, "Show chambers")
+        self.corridors_tickbox =TickBox(1280, 258, "Show corridors")
+        self.graph_tickbox = TickBox(1280, 300, "Show Graph")
+
+        self.dungeon_sizeline = Sizeline(1080, 1320, 420, "Choose dungeon size:", (5, 35))
         self.min_chamber_size_sizeline = Sizeline(1080, 1320, 520, "Min chamber size", (2, 6))
         self.max_chamber_size_sizeline = Sizeline(1080, 1320, 620, "Max chamber size:", (7, 20))
 
@@ -55,6 +60,9 @@ class Renderer:
 
         self.industrial_tickbox.render(self.display)
         self.organic_tickbox.render(self.display)
+        self.chambers_tickbox.render(self.display)
+        self.corridors_tickbox.render(self.display)
+        self.graph_tickbox.render(self.display)
 
     def render_dungeon_sizeline(self):
 
