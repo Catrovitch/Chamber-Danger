@@ -113,7 +113,7 @@ Poetry run invoke start
 
 5. Some additional variables. These can not be tinkered with after genration. Generate a new dungeon to play with these.
 
- -  The "Choose dungeon density" parameter tinkers with the BSP-algorithm's variable "max_node_size" This means that the larger this number is the larger the subsets of the BSP divisions will be in general. This will lead to a more spread out dungeon with less rooms and longer corridors. 
+ -  The "Choose max node size" parameter tinkers with the BSP-algorithm's variable "max_node_size" This means that the larger this number is the larger the subsets of the BSP divisions will be in general. This will lead to a more spread out dungeon with less rooms and longer corridors. 
  -  The "Choose min chamber size" parameter indicates the minimum size of chambers in the dungeon.
  -  The "Choose max chamber size" parameter indicates the maximum size of chambers in the dungeon.
   
