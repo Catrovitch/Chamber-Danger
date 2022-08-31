@@ -1,11 +1,11 @@
-from ui.main_ui import UI
+from ui.main_ui import Main
 
 
 def start_program():
 
-    ui = UI()
+    main = Main()
 
-    ui.main_loop()
+    main.main_loop()
 
 
 if __name__ == "__main__":

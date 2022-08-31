@@ -11,23 +11,26 @@ class Renderer:
 
     def __init__(self, display):
 
+        """This class keeps track of various elemets of the GUI and renders them as well.
+        """
+
         self.display = display
 
         self.textholder = TextHolder()
 
-        self.industrial_tickbox = TickBox(1280, 148, "Industrial dungeon: ")
-        self.organic_tickbox = TickBox(1280, 178, "Organic dungeon: ")
+        self.industrial_tickbox = TickBox(1300, 148, "Industrial dungeon: ")
+        self.organic_tickbox = TickBox(1300, 178, "Organic dungeon: ")
 
-        self.chambers_tickbox = TickBox(1280, 220, "Show chambers")
-        self.corridors_tickbox = TickBox(1280, 245, "Show corridors")
-        self.dungeon_depth = TickBox(1280, 270, "Show dungeon depth")
-        self.graph_tickbox = TickBox(1280, 295, "Show Graph")
+        self.chambers_tickbox = TickBox(1300, 220, "Show chambers")
+        self.corridors_tickbox = TickBox(1300, 245, "Show corridors")
+        self.dungeon_depth = TickBox(1300, 270, "Show dungeon depth")
+        self.graph_tickbox = TickBox(1300, 295, "Show Graph")
 
 
         self.dungeon_sizeline = Sizeline(
-            1080, 1320, 420, "Choose dungeon size:", (5, 35))
+            1080, 1320, 420, "Max node size:", (5, 35))
         self.min_chamber_size_sizeline = Sizeline(
-            1080, 1320, 520, "Min chamber size", (2, 6))
+            1080, 1320, 520, "Min chamber size:", (3, 6))
         self.max_chamber_size_sizeline = Sizeline(
             1080, 1320, 620, "Max chamber size:", (7, 20))
 
@@ -107,6 +110,7 @@ class Renderer:
     def render_drunkardswalk(self, dungeon):
 
         wall_colour = (50, 50, 50)
+        chamber_colour = (145, 88, 88)
 
         square_x = 0
         square_y = 0
@@ -125,6 +129,10 @@ class Renderer:
 
             square_y += 10
             square_x = 0
+
+
+        for chamber in dungeon.chambers:
+            pygame.draw.rect(self.display, chamber_colour, (chamber.x1*10, chamber.y1*10, chamber.width*10, chamber.height*10))
 
     def render_corridors(self, dungeon):
 

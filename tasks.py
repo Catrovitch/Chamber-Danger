@@ -4,9 +4,6 @@ from invoke import task
 def start(ctx):
     ctx.run("python3 src/generate_dungeon.py", pty=True)
 
-def starto(ctx):
-    ctx.run("python3 src/index.py", pty=True)
-
 @task
 def test(ctx):
     ctx.run("pytest src", pty=True)
@@ -14,7 +11,6 @@ def test(ctx):
 @task
 def lint(ctx):
     ctx.run("pylint src", pty=True)
-
 
 @task
 def format(ctx):  # pylint: disable=redefined-builtin

@@ -7,6 +7,9 @@ from ui.ui_entities.text import Text
 
 class Sizeline:
 
+    """Utility class to keep track of the various elements of a sizeline.
+    """
+
     def __init__(self, start_x, end_x, y, title, spectrum):
 
         self.start_x = start_x

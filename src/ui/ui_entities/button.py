@@ -5,6 +5,9 @@ from ui.ui_entities.text import Text
 
 class Button:
 
+    """Utility class to easier be able to keep track of all the functions of a button. Used by the UI.
+    """
+
     def __init__(self, x, y, width, height, text):
 
         self.x = x

@@ -3,6 +3,9 @@ import pygame
 
 class Text:
 
+    """Utility to easier handle text-objects
+    """
+
     def __init__(self, text, x, y, size):
 
         self.font = pygame.font.SysFont("Arial", size)

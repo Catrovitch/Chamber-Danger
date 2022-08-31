@@ -5,7 +5,10 @@ from services.BSPDungeon import BSPDungeon
 from services.OrganicBSPDungeon import OrganicBSPDungeon
 
 
-class UI:
+class Main:
+
+    """This class handles the coordination of the program. I.E. the user interface and the main loop.
+    """
 
     def __init__(self):
 
@@ -136,9 +139,6 @@ class UI:
                     self.renderer.render_dungeon(self.dungeon)
                     render_dungeon = False
 
-                if show_dungeon_depth and self.renderer.dungeon_depth.ticked:
-                    self.renderer.render_depth_level_chambers(self.dungeon)
-
                 if show_corridors and self.renderer.industrial_tickbox.ticked:
                     self.renderer.render_corridors(self.dungeon)
 
@@ -147,6 +147,9 @@ class UI:
 
                 if show_chambers:
                     self.renderer.render_chambers(self.dungeon)
+
+                if show_dungeon_depth and self.renderer.dungeon_depth.ticked:
+                    self.renderer.render_depth_level_chambers(self.dungeon)
 
                 if show_graph:
                     self.renderer.render_graph(self.dungeon)
