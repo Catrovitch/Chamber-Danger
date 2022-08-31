@@ -1,5 +1,6 @@
 import pygame
 
+
 class Text:
 
     def __init__(self, text, x, y, size):
@@ -15,16 +16,10 @@ class Text:
 
     def blit(self, display):
 
-        display.blit(self.text, (self.x, self.y)) 
+        display.blit(self.text, (self.x, self.y))
 
     def update_text(self, text):
 
         text = str(text)
 
         self.text = self.font.render(text, True, self.colour)
-
-    
-        
-
-
-    

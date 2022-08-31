@@ -21,8 +21,6 @@ class OrganicBSPDungeon:
         self.drunkardswalk = []
         self.graph_visualizer = []
 
-
-    
     def generateMap(self):
         # Initializes/resets 2D list
 
@@ -43,7 +41,7 @@ class OrganicBSPDungeon:
             for node in self._nodes:
                 if (node.child_1 == None) and (node.child_2 == None):
                     if ((node.width > self.max_node_size) or
-                        (node.height > self.max_node_size)):
+                            (node.height > self.max_node_size)):
                         if (node.splitNode()):
                             self._nodes.append(node.child_1)
                             self._nodes.append(node.child_2)
@@ -54,7 +52,6 @@ class OrganicBSPDungeon:
 
         return self.map
 
-    
     def _initiate_map(self):
 
         self.map = [[1
@@ -62,10 +59,9 @@ class OrganicBSPDungeon:
                     for x in range(self.map_width)]
 
         self.drunkardswalk = [[1
-                     for y in range(self.map_height)]
-                    for x in range(self.map_width)]
+                               for y in range(self.map_height)]
+                              for x in range(self.map_width)]
 
-    
     def createChamber(self, chamber):
         # sets the values in the map list which corresponds to the given chamber from 1 to 0
         for x in range(chamber.x1 + 1, chamber.x2):
@@ -74,7 +70,6 @@ class OrganicBSPDungeon:
 
         self.chambers.append(chamber)
 
-    
     def createTunnel(self, chamber1, chamber2):
         # heavily weighted drunkards walk algorithm
 
@@ -133,9 +128,8 @@ class OrganicBSPDungeon:
                     self.map[drunk_x][drunk_y] = 0
                     self.drunkardswalk[drunk_x][drunk_y] = chamber1.colour
 
-        self.graph_visualizer.append(Corridor(chamber1, chamber2, chamber1.colour, x1, y1, x2, y2))
-
-
+        self.graph_visualizer.append(
+            Corridor(chamber1, chamber2, chamber1.colour, x1, y1, x2, y2))
 
     def clean_map(self, mapWidth, mapHeight):
         if (self.organic):
@@ -149,7 +143,6 @@ class OrganicBSPDungeon:
                         if (self.map[x][y] == 0) and (self.getAdjacentWall(x, y) >= self.fitting):
                             self.map[x][y] = 1
 
-    
     def getAdjacentWall(self, x, y):
         # locates walls in all directions
         wall_count = 0

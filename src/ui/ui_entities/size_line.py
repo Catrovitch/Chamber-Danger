@@ -9,7 +9,6 @@ class Sizeline:
 
     def __init__(self, start_x, end_x, y, title, spectrum):
 
-        
         self.start_x = start_x
         self.end_x = end_x
         self.y = y
@@ -24,7 +23,7 @@ class Sizeline:
         self.interval_size = self.line_length/(self.max_size-self.min_size)
 
         self.intervals = self.produce_intervals()
-    
+
         self.button = Button(mid_x, y-12, 15, 25, "")
 
         mid_point = (self.min_size+self.max_size)//2
@@ -35,7 +34,6 @@ class Sizeline:
         self.size = mid_point
 
         self.colour = (45, 45, 45)
-
 
     def produce_intervals(self):
 
@@ -48,9 +46,7 @@ class Sizeline:
 
         return interval_list
 
-
     def update_button_and_size(self, pos):
-
 
         x = pos[0]
         y = pos[1]
@@ -62,7 +58,7 @@ class Sizeline:
 
         for limit in self.intervals:
             size += 1
-            
+
             if x <= limit:
                 self.button.x = limit - (self.interval_size/2)
                 self.size_text.update_text(size)
@@ -80,24 +76,22 @@ class Sizeline:
         self.button.render(display)
 
         self.title.blit(display)
-        
-        self.size_text.blit(display)
 
+        self.size_text.blit(display)
 
     def render_line(self, display):
 
-        pygame.draw.line(display, (self.colour), (self.start_x, self.y), (self.end_x, self.y), 3)
-
+        pygame.draw.line(display, (self.colour),
+                         (self.start_x, self.y), (self.end_x, self.y), 3)
 
     def render_intervals(self, display):
 
         offset = self.interval_size/2
 
-        interval_y1 = self.y -10
-        interval_y2 = self.y +10
+        interval_y1 = self.y - 10
+        interval_y2 = self.y + 10
 
         for limit in self.intervals:
-            
-            pygame.draw.line(display, (self.colour), (limit-offset, interval_y1), (limit-offset, interval_y2), 2)
 
-
+            pygame.draw.line(display, (self.colour), (limit-offset,
+                             interval_y1), (limit-offset, interval_y2), 2)

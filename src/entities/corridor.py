@@ -9,11 +9,8 @@ class Corridor:
         self.parent = parent
         self.child = child
         self.colour = colour
-        
+
         self.x1 = x1
         self.y1 = y1
         self.x2 = x2
         self.y2 = y2
-
-
-        

@@ -15,7 +15,7 @@ class BSPDungeon:
         self.chambers = []
         self.corridors = []
         self.graph_visualizer = []
-    
+
     def generateMap(self):
         # Initializes/resets 2D list
 
@@ -36,7 +36,7 @@ class BSPDungeon:
             for node in self._nodes:
                 if (node.child_1 == None) and (node.child_2 == None):
                     if ((node.width > self.max_node_size) or
-                        (node.height > self.max_node_size)):
+                            (node.height > self.max_node_size)):
                         if (node.splitNode()):
                             self._nodes.append(node.child_1)
                             self._nodes.append(node.child_2)
@@ -46,15 +46,12 @@ class BSPDungeon:
 
         return self.map
 
-    
     def _initiate_map(self):
 
         self.map = [[1
                      for y in range(self.map_height)]
                     for x in range(self.map_width)]
 
-
-    
     def createChamber(self, chamber):
         # sets the values in the map lists which corresponds to the given chamber from 1 to 0
         for x in range(chamber.x1 + 1, chamber.x2):
@@ -63,7 +60,6 @@ class BSPDungeon:
 
         self.chambers.append(chamber)
 
-    
     def createTunnel(self, chamber1, chamber2):
         # digs a tunnel from chamber1 to chamber2
         x1, y1 = chamber1.center()
@@ -73,25 +69,27 @@ class BSPDungeon:
         if random.randint(0, 1) == 1:
             self.createHorizontalTunnel(x1, x2, y1)
             self.createVerticalTunnel(y1, y2, x2)
-            self.corridors.append(Corridor(chamber1, chamber2, chamber1.colour, x1, y1, x2, y1))
-            self.corridors.append(Corridor(chamber1, chamber2, chamber1.colour, x2, y1, x2, y2))
+            self.corridors.append(
+                Corridor(chamber1, chamber2, chamber1.colour, x1, y1, x2, y1))
+            self.corridors.append(
+                Corridor(chamber1, chamber2, chamber1.colour, x2, y1, x2, y2))
 
         else:
             self.createVerticalTunnel(y1, y2, x1)
             self.createHorizontalTunnel(x1, x2, y2)
-            self.corridors.append(Corridor(chamber1, chamber2, chamber1.colour, x1, y1, x1, y2))
-            self.corridors.append(Corridor(chamber1, chamber2, chamber1.colour, x1, y2, x2, y2))
+            self.corridors.append(
+                Corridor(chamber1, chamber2, chamber1.colour, x1, y1, x1, y2))
+            self.corridors.append(
+                Corridor(chamber1, chamber2, chamber1.colour, x1, y2, x2, y2))
 
+        self.graph_visualizer.append(
+            Corridor(chamber1, chamber2, chamber1.colour, x1, y1, x2, y2))
 
-        self.graph_visualizer.append(Corridor(chamber1, chamber2, chamber1.colour, x1, y1, x2, y2))
-
-    
     def createHorizontalTunnel(self, x1, x2, y):
 
         for x in range(min(x1, x2), max(x1, x2)+1):
             self.map[x][y] = 0
 
-    
     def createVerticalTunnel(self, y1, y2, x):
 
         for y in range(min(y1, y2), max(y1, y2)+1):

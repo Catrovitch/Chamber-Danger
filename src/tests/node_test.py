@@ -8,7 +8,7 @@ class TestNode(unittest.TestCase):
 
     def setUp(self):
 
-        self.node = Node(10, 15, 20, 25)
+        self.node = Node(10, 15, 20, 25, 0)
 
     def test_constructor_x(self):
 
@@ -52,7 +52,7 @@ class TestNode(unittest.TestCase):
 
     def test_splitNode_too_small_to_split(self):
 
-        self.node = Node(10, 15, 12, 15)
+        self.node = Node(10, 15, 12, 15, 0)
 
         self.assertEqual(self.node.splitNode(), False)
 

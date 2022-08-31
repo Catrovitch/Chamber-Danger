@@ -3,7 +3,7 @@ import pygame
 from ui.renderer import Renderer
 from services.BSPDungeon import BSPDungeon
 from services.OrganicBSPDungeon import OrganicBSPDungeon
-from .ui_entities.text import Text
+
 
 class UI:
 
@@ -17,7 +17,7 @@ class UI:
         self.display = pygame.display.set_mode((width, height))
 
         self.renderer = Renderer(self.display)
-        
+
     def main_loop(self):
 
         dungeon_generated = False
@@ -39,7 +39,6 @@ class UI:
                 if event.type == pygame.MOUSEBUTTONDOWN:
 
                     self.click = True
-                    
 
                     if self.renderer.industrial_tickbox.is_clicked(pos):
                         self.renderer.industrial_tickbox.ticked = True
@@ -54,19 +53,18 @@ class UI:
                         if self.renderer.chambers_tickbox.ticked == False:
                             self.renderer.chambers_tickbox.ticked = True
                             show_chambers = True
-                            
+
                         elif self.renderer.chambers_tickbox.ticked == True:
                             self.renderer.chambers_tickbox.ticked = False
                             show_chambers = False
                             render_dungeon = True
-                
+
                     if self.renderer.corridors_tickbox.is_clicked(pos):
 
                         if self.renderer.corridors_tickbox.ticked == False:
                             self.renderer.corridors_tickbox.ticked = True
                             show_corridors = True
-                                  
-                        
+
                         elif self.renderer.corridors_tickbox.ticked == True:
                             self.renderer.corridors_tickbox.ticked = False
                             show_corridors = False
@@ -78,7 +76,6 @@ class UI:
                             self.renderer.graph_tickbox.ticked = True
                             show_graph = True
 
-
                         elif self.renderer.graph_tickbox.ticked == True:
                             self.renderer.graph_tickbox.ticked = False
                             show_graph = False
@@ -86,10 +83,11 @@ class UI:
 
                     self.renderer.dungeon_sizeline.update_button_and_size(pos)
 
-                    self.renderer.max_chamber_size_sizeline.update_button_and_size(pos)
+                    self.renderer.max_chamber_size_sizeline.update_button_and_size(
+                        pos)
 
-                    self.renderer.min_chamber_size_sizeline.update_button_and_size(pos)
-
+                    self.renderer.min_chamber_size_sizeline.update_button_and_size(
+                        pos)
 
                     if self.renderer.generate_dungeon_button.is_clicked(pos):
 
@@ -97,41 +95,26 @@ class UI:
                         max_chamber_size = self.renderer.max_chamber_size_sizeline.size
                         min_chamber_size = self.renderer.min_chamber_size_sizeline.size
 
-
                         if self.renderer.industrial_tickbox.ticked == True:
 
-                            self.dungeon = BSPDungeon(dungeon_size, max_chamber_size, min_chamber_size)
+                            self.dungeon = BSPDungeon(
+                                dungeon_size, max_chamber_size, min_chamber_size)
                             self.dungeon.generateMap()
                             dungeon_generated = True
                             render_dungeon = True
 
-
-                            print("Node numbers: ")
-                            for node in (self.dungeon._nodes):
-                                print(f"Parent: {node.node_nr}")
-                                try:
-                                    print(f"Child1: {node.child_1.node_nr}")
-                                except AttributeError:
-                                    print(f"Node {node.node_nr} has no child_1")
-                                try:
-                                    print(f"Child2: {node.child_2.node_nr}")
-                                except AttributeError:
-                                    print(f"Node {node.node_nr} has no child_2")
-
-                                print("")
-                            
-
                         if self.renderer.organic_tickbox.ticked == True:
-                            self.dungeon = OrganicBSPDungeon(dungeon_size, max_chamber_size, min_chamber_size)
+                            self.dungeon = OrganicBSPDungeon(
+                                dungeon_size, max_chamber_size, min_chamber_size)
                             self.dungeon.generateMap()
-                            dungeon_generated = True        
+                            dungeon_generated = True
                             render_dungeon = True
+
                 if event.type == pygame.MOUSEBUTTONUP:
 
                     self.click = False
 
                     self.renderer.dungeon_sizeline.button.clicked = False
-                    
 
             if dungeon_generated:
 
@@ -140,22 +123,18 @@ class UI:
                     self.renderer.render_dungeon_background()
                     self.renderer.render_dungeon(self.dungeon)
                     render_dungeon = False
-                
+
                 if show_corridors and self.renderer.industrial_tickbox.ticked:
                     self.renderer.render_corridors(self.dungeon)
-
 
                 if show_corridors and self.renderer.organic_tickbox.ticked:
                     self.renderer.render_drunkardswalk(self.dungeon)
 
-                    
                 if show_chambers:
                     self.renderer.render_chambers(self.dungeon)
 
-
                 if show_graph:
                     self.renderer.render_graph(self.dungeon)
-
 
             self.renderer.render_all()
 

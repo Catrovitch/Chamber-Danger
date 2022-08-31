@@ -54,4 +54,3 @@ class TestBSPDungeon(unittest.TestCase):
         number_of_nodes = len(self.dungeon._nodes)
 
         self.assertEqual(number_of_nodes, 1)
-

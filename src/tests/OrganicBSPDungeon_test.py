@@ -46,12 +46,10 @@ class TestBSPDungeon(unittest.TestCase):
 
     def test_node_size_is_max(self):
 
-
         self.dungeon.max_node_size = 150
-        
+
         self.dungeon.generateMap()
 
         number_of_nodes = len(self.dungeon._nodes)
 
         self.assertEqual(number_of_nodes, 1)
-
