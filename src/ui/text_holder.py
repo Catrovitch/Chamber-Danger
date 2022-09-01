@@ -6,7 +6,6 @@ from ui.ui_entities.text import Text
 class TextHolder:
 
     def __init__(self):
-
         """This class is a utility class to keep track of text elements in the UI.
         """
 

@@ -1,9 +1,11 @@
 from random import randrange
 
+
 class Chamber:
 
     """This class functions as a visual presentation of the nodes of the graph created by the BSP algorithm.
     """
+
     def __init__(self, x, y, w, h, number):
         self.x1 = x
         self.y1 = y
@@ -16,7 +18,6 @@ class Chamber:
         self.colour = (randrange(0, 255), randrange(0, 255), randrange(0, 255))
 
     def center(self):
-
         """Finds and returns the center of the chamber.
 
         Returns:
@@ -27,7 +28,6 @@ class Chamber:
         return (center_x, center_y)
 
     def depth(self, interval, min_level):
-
         """Normalizes relative depths and assigns colour
            according to this.
         """
@@ -38,4 +38,3 @@ class Chamber:
 
         depth_level = 255-dungeon_colour_level*depth_interval
         self.depth_colour = (depth_level, depth_level, depth_level)
-

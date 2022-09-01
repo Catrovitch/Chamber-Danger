@@ -10,7 +10,6 @@ from ui.ui_entities.text import Text
 class Renderer:
 
     def __init__(self, display):
-
         """This class keeps track of various elemets of the GUI and renders them as well.
         """
 
@@ -26,7 +25,6 @@ class Renderer:
 
         self.corridors_tickbox = TickBox(1300, 290, "Show corridors")
         self.graph_tickbox = TickBox(1300, 315, "Show Graph")
-
 
         self.dungeon_sizeline = Sizeline(
             1080, 1320, 420, "Max node size:", (5, 35))
@@ -131,9 +129,9 @@ class Renderer:
             square_y += 10
             square_x = 0
 
-
         for chamber in dungeon.chambers:
-            pygame.draw.rect(self.display, chamber_colour, (chamber.x1*10, chamber.y1*10, chamber.width*10, chamber.height*10))
+            pygame.draw.rect(self.display, chamber_colour, (chamber.x1*10,
+                             chamber.y1*10, chamber.width*10, chamber.height*10))
 
     def render_corridors(self, dungeon):
 
@@ -148,14 +146,13 @@ class Renderer:
         for chamber in dungeon.chambers:
             pygame.draw.rect(self.display, (chamber.colour), (chamber.x1*10+10,
                              chamber.y1*10+10, chamber.width*10-10, chamber.height*10-10))
-            
+
             x, y = chamber.center()
 
             chamber_number = Text(str(chamber.number),
                                   chamber.x1*10+11, chamber.y1*10+11, 24)
             chamber_number.blit(self.display)
 
-                            
     def render_graph(self, dungeon):
 
         for corridor in dungeon.graph_visualizer:
@@ -174,7 +171,6 @@ class Renderer:
             chamber_number = Text(str(chamber.number),
                                   chamber.x1*10+11, chamber.y1*10+11, 24)
             chamber_number.blit(self.display)
-
 
     def render_all(self):
 

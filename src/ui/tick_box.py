@@ -6,7 +6,6 @@ from ui.ui_entities.text import Text
 class TickBox:
 
     def __init__(self, x, y, title):
-
         """A class that functions as a tickbox for the GUI.
         """
 

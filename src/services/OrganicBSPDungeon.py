@@ -26,7 +26,6 @@ class OrganicBSPDungeon:
         self.max_chamber_level = 10000000
 
     def generateMap(self):
-       
         """Initializes/resets 2D list
         """
 
@@ -60,7 +59,6 @@ class OrganicBSPDungeon:
         return self.map
 
     def _initiate_map(self):
-
         """Creates a 2d matrix according to the map_height and map_width.
         """
 
@@ -83,7 +81,7 @@ class OrganicBSPDungeon:
         if len(self.chambers) == 0:
             self.min_chamber_level = chamber.number
             self.max_chamber_level = chamber.number
-        
+
         if chamber.number < self.min_chamber_level:
             self.min_chamber_level = chamber.number
 
@@ -156,7 +154,6 @@ class OrganicBSPDungeon:
             Corridor(chamber1, chamber2, chamber1.colour, x1, y1, x2, y2))
 
     def chamber_depth(self):
-
         """Generates dungeon depth level"""
 
         for chamber in self.chambers:

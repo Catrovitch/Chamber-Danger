@@ -65,7 +65,6 @@ class Node:
         return True
 
     def createChambers(self, dungeon):
-
         """Creates chambers at the end of branches.
         """
 
@@ -93,7 +92,6 @@ class Node:
             dungeon.createChamber(self.chamber)
 
     def getChamber(self):
-
         """If node (self) already has chamber return it, else recursively search children for chamber.
 
         Returns:
