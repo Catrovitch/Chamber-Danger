@@ -66,6 +66,9 @@ class Node:
 
     def createChambers(self, dungeon):
 
+        """Creates chambers at the end of branches.
+        """
+
         if (self.child_1) or (self.child_2):
             # recursively search for children until you hit the end of the branch
             if (self.child_1):
@@ -90,6 +93,12 @@ class Node:
             dungeon.createChamber(self.chamber)
 
     def getChamber(self):
+
+        """If node (self) already has chamber return it, else recursively search children for chamber.
+
+        Returns:
+            _type_: _description_
+        """
         if (self.chamber):
             return self.chamber
 

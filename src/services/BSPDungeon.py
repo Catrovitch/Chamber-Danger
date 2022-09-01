@@ -6,6 +6,9 @@ from entities.corridor import Corridor
 
 
 class BSPDungeon:
+
+    """A class that stores a BSP as well as some visual aspects used by the GUI.
+    """
     def __init__(self, max_node_size=24, max_chamber_size=15, min_chamber_size=5):
         self.map = []
         self.chamber = None
@@ -15,9 +18,14 @@ class BSPDungeon:
         self.chambers = []
         self.corridors = []
         self.graph_visualizer = []
+        self.min_chamber_level = 0
+        self.max_chamber_level = 10000000
 
     def generateMap(self):
-        # Initializes/resets 2D list
+
+
+        """Initializes/resets 2D list
+        """
 
         self.map_width = 100
         self.map_height = 80
@@ -44,24 +52,49 @@ class BSPDungeon:
 
         root_node.createChambers(self)
 
+        self.chamber_depth()    
+
         return self.map
 
     def _initiate_map(self):
+
+        """Creates a 2d matrix according to the map_height and map_width.
+        """
 
         self.map = [[1
                      for y in range(self.map_height)]
                     for x in range(self.map_width)]
 
     def createChamber(self, chamber):
-        # sets the values in the map lists which corresponds to the given chamber from 1 to 0
+
+
+        """sets the values in the map lists which corresponds to the given chamber from 1 to 0
+           and appends chamber object to chamber-list
+        """
+
         for x in range(chamber.x1 + 1, chamber.x2):
             for y in range(chamber.y1+1, chamber.y2):
                 self.map[x][y] = 0
 
+
+        if len(self.chambers) == 0:
+            self.min_chamber_level = chamber.number
+            self.max_chamber_level = chamber.number
+        
+        if chamber.number < self.min_chamber_level:
+            self.min_chamber_level = chamber.number
+
+        if chamber.number > self.max_chamber_level:
+            self.max_chamber_level = chamber.number
+
+        self.dungeon_depth = self.max_chamber_level - self.min_chamber_level
+
         self.chambers.append(chamber)
 
     def createTunnel(self, chamber1, chamber2):
-        # digs a tunnel from chamber1 to chamber2
+
+        """digs a tunnel from chamber1 to chamber
+        """
         x1, y1 = chamber1.center()
         x2, y2 = chamber2.center()
 
@@ -87,10 +120,19 @@ class BSPDungeon:
 
     def createHorizontalTunnel(self, x1, x2, y):
 
+        """Creates a tunnel in horizontal direction.
+        """
         for x in range(min(x1, x2), max(x1, x2)+1):
             self.map[x][y] = 0
 
     def createVerticalTunnel(self, y1, y2, x):
 
+        """Creates a tunnel in horizontal direction"""
+
         for y in range(min(y1, y2), max(y1, y2)+1):
             self.map[x][y] = 0
+
+    def chamber_depth(self):
+
+        for chamber in self.chambers:
+            chamber.depth(self.dungeon_depth, self.min_chamber_level)

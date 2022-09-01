@@ -164,6 +164,7 @@ class Renderer:
     def render_depth_level_chambers(self, dungeon):
 
         for chamber in dungeon.chambers:
+            
             pygame.draw.rect(self.display, (chamber.depth_colour), (chamber.x1*10,
                              chamber.y1*10, chamber.width*10, chamber.height*10))
 

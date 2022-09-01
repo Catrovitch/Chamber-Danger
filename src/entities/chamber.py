@@ -13,15 +13,25 @@ class Chamber:
         self.y2 = y+h
         self.number = number
 
-        depth_interval = 255//16
-        depth_level = 255-self.number*depth_interval-depth_interval
-
         self.colour = (randrange(0, 255), randrange(0, 255), randrange(0, 255))
-        self.depth_colour = (depth_level, depth_level, depth_level)
-
 
     def center(self):
+
+        """Finds and returns the center of the chamber.
+
+        Returns:
+            tuple: x, y (center of the circle)
+        """
         center_x = (self.x1 + self.x2)//2
         center_y = (self.y1 + self.y2)//2
         return (center_x, center_y)
+
+    def depth(self, interval, min_level):
+
+        dungeon_colour_level = self.number-min_level
+
+        depth_interval = 255//interval
+
+        depth_level = 255-dungeon_colour_level*depth_interval
+        self.depth_colour = (depth_level, depth_level, depth_level)
 

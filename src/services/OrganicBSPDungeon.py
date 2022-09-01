@@ -3,8 +3,9 @@ from entities.node import Node
 from entities.corridor import Corridor
 
 
-# === A BSP based dungeon connected by Drunkard's walk algorithm ===
 class OrganicBSPDungeon:
+
+    """A BSP algorithm connected by Drankard's walk algorithm"""
 
     def __init__(self, max_node_size=24, max_chamber_size=15, min_chamber_size=5):
 
@@ -21,8 +22,13 @@ class OrganicBSPDungeon:
         self.drunkardswalk = []
         self.graph_visualizer = []
 
+        self.min_chamber_level = 0
+        self.max_chamber_level = 10000000
+
     def generateMap(self):
-        # Initializes/resets 2D list
+       
+        """Initializes/resets 2D list
+        """
 
         self.map_width = 100
         self.map_height = 80
@@ -48,11 +54,15 @@ class OrganicBSPDungeon:
                             splitted = True
 
         root_node.createChambers(self)
-        self.clean_map(self.map_width, self.map_height)
+
+        self.chamber_depth()
 
         return self.map
 
     def _initiate_map(self):
+
+        """Creates a 2d matrix according to the map_height and map_width.
+        """
 
         self.map = [[1
                      for y in range(self.map_height)]
@@ -63,16 +73,30 @@ class OrganicBSPDungeon:
                               for x in range(self.map_width)]
 
     def createChamber(self, chamber):
-        # sets the values in the map list which corresponds to the given chamber from 1 to 0
+        """sets the values in the map list which corresponds to the given chamber from 1 to 0
+        """
+
         for x in range(chamber.x1 + 1, chamber.x2):
             for y in range(chamber.y1+1, chamber.y2):
                 self.map[x][y] = 0
 
+        if len(self.chambers) == 0:
+            self.min_chamber_level = chamber.number
+            self.max_chamber_level = chamber.number
+        
+        if chamber.number < self.min_chamber_level:
+            self.min_chamber_level = chamber.number
+
+        if chamber.number > self.max_chamber_level:
+            self.max_chamber_level = chamber.number
+
+        self.dungeon_depth = self.max_chamber_level - self.min_chamber_level
+
         self.chambers.append(chamber)
 
     def createTunnel(self, chamber1, chamber2):
-        # heavily weighted drunkards walk algorithm
-
+        """heavily weighted drunkards walk algorithm
+        """
         drunk_x, drunk_y = chamber2.center()
         goal_x, goal_y = chamber1.center()
 
@@ -131,29 +155,7 @@ class OrganicBSPDungeon:
         self.graph_visualizer.append(
             Corridor(chamber1, chamber2, chamber1.colour, x1, y1, x2, y2))
 
-    def clean_map(self, mapWidth, mapHeight):
-        if (self.organic):
-            for i in range(3):
-                # Look at each value in map and see if it's smooth
-                for x in range(1, mapWidth-1):
-                    for y in range(1, mapHeight-1):
-                        if (self.map[x][y] == 1) and (self.getAdjacentWall(x, y) <= self.organic_level):
-                            self.map[x][y] = 0
+    def chamber_depth(self):
 
-                        if (self.map[x][y] == 0) and (self.getAdjacentWall(x, y) >= self.fitting):
-                            self.map[x][y] = 1
-
-    def getAdjacentWall(self, x, y):
-        # locates walls in all directions
-        wall_count = 0
-
-        if (self.map[x][y-1] == 1):  # Check up
-            wall_count += 1
-        if (self.map[x][y+1] == 1):  # Check down
-            wall_count += 1
-        if (self.map[x-1][y] == 1):  # Check left
-            wall_count += 1
-        if (self.map[x+1][y] == 1):  # Check right
-            wall_count += 1
-
-        return wall_count
+        for chamber in self.chambers:
+            chamber.depth(self.dungeon_depth, self.min_chamber_level)
