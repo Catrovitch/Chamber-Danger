@@ -7,6 +7,9 @@ class TickBox:
 
     def __init__(self, x, y, title):
 
+        """A class that functions as a tickbox for the GUI.
+        """
+
         self.colour = (220, 149, 149)
 
         self.ticked = False
@@ -16,7 +19,7 @@ class TickBox:
         self.x = x
         self.y = y
 
-        self.title = Text(title, self.x-190, self.y-5, 20)
+        self.title = Text(title, self.x-200, self.y-3, 20)
 
     def is_clicked(self, pos):
 

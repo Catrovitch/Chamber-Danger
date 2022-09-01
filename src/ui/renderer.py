@@ -22,9 +22,10 @@ class Renderer:
         self.organic_tickbox = TickBox(1300, 178, "Organic dungeon: ")
 
         self.chambers_tickbox = TickBox(1300, 220, "Show chambers")
-        self.corridors_tickbox = TickBox(1300, 245, "Show corridors")
-        self.dungeon_depth = TickBox(1300, 270, "Show dungeon depth")
-        self.graph_tickbox = TickBox(1300, 295, "Show Graph")
+        self.dungeon_depth = TickBox(1300, 245, "Show dungeon depth")
+
+        self.corridors_tickbox = TickBox(1300, 290, "Show corridors")
+        self.graph_tickbox = TickBox(1300, 315, "Show Graph")
 
 
         self.dungeon_sizeline = Sizeline(
@@ -137,19 +138,21 @@ class Renderer:
     def render_corridors(self, dungeon):
 
         for corridor in dungeon.corridors:
-            pygame.draw.line(self.display, (20, 20, 20), (corridor.x1*10+4,
-                             corridor.y1*10+4), (corridor.x2*10+4, corridor.y2*10+4), 16)
+            pygame.draw.line(self.display, (20, 20, 20), (corridor.x1*10+4.5,
+                             corridor.y1*10+4.5), (corridor.x2*10+4.5, corridor.y2*10+4.5), 16)
             pygame.draw.line(self.display, (corridor.colour), (corridor.x1 *
                              10+5, corridor.y1*10+5), (corridor.x2*10+5, corridor.y2*10+5), 8)
 
     def render_chambers(self, dungeon):
 
         for chamber in dungeon.chambers:
-            pygame.draw.rect(self.display, (chamber.colour), (chamber.x1*10,
-                             chamber.y1*10, chamber.width*10, chamber.height*10))
+            pygame.draw.rect(self.display, (chamber.colour), (chamber.x1*10+10,
+                             chamber.y1*10+10, chamber.width*10-10, chamber.height*10-10))
             
+            x, y = chamber.center()
+
             chamber_number = Text(str(chamber.number),
-                                  chamber.x1*10, chamber.y1*10, 24)
+                                  chamber.x1*10+11, chamber.y1*10+11, 24)
             chamber_number.blit(self.display)
 
                             
@@ -164,12 +167,12 @@ class Renderer:
     def render_depth_level_chambers(self, dungeon):
 
         for chamber in dungeon.chambers:
-            
-            pygame.draw.rect(self.display, (chamber.depth_colour), (chamber.x1*10,
-                             chamber.y1*10, chamber.width*10, chamber.height*10))
+
+            pygame.draw.rect(self.display, (chamber.depth_colour), (chamber.x1*10+10,
+                             chamber.y1*10+10, chamber.width*10-10, chamber.height*10-10))
 
             chamber_number = Text(str(chamber.number),
-                                  chamber.x1*10, chamber.y1*10, 24)
+                                  chamber.x1*10+11, chamber.y1*10+11, 24)
             chamber_number.blit(self.display)
 
 

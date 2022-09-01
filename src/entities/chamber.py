@@ -28,6 +28,10 @@ class Chamber:
 
     def depth(self, interval, min_level):
 
+        """Normalizes relative depths and assigns colour
+           according to this.
+        """
+
         dungeon_colour_level = self.number-min_level
 
         depth_interval = 255//interval

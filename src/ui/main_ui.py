@@ -57,6 +57,8 @@ class Main:
                         if self.renderer.chambers_tickbox.ticked == False:
                             self.renderer.chambers_tickbox.ticked = True
                             show_chambers = True
+                            self.renderer.dungeon_depth.ticked = False
+                            show_dungeon_depth = False
 
                         elif self.renderer.chambers_tickbox.ticked == True:
                             self.renderer.chambers_tickbox.ticked = False
@@ -90,6 +92,8 @@ class Main:
                         if self.renderer.dungeon_depth.ticked == False:
                             self.renderer.dungeon_depth.ticked = True
                             show_dungeon_depth = True
+                            self.renderer.chambers_tickbox.ticked = False
+                            show_chambers = False
 
                         elif self.renderer.dungeon_depth.ticked == True:
                             self.renderer.dungeon_depth.ticked = False

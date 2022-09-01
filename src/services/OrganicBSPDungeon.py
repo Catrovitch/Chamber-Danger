@@ -157,5 +157,7 @@ class OrganicBSPDungeon:
 
     def chamber_depth(self):
 
+        """Generates dungeon depth level"""
+
         for chamber in self.chambers:
             chamber.depth(self.dungeon_depth, self.min_chamber_level)
