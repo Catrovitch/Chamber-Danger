@@ -30,7 +30,7 @@ $ git clone https://github.com/Catrovich/Chamber-Danger.git
 
 ### Downloading Release
 
-to be completed...
+Find the "Realeases" window at the right side of the README document. Click on the release named "Chamber Danger". Download the .zip file. Extract the downloaded file to a location of your choice. Navigate to the extracted folder in terminal. To make sure you are in the correct location, check that the  "pyproject.toml" file is in the folder. You have succesfully downloaded, extracted and navigated to the corrected folder. 
 
 ## Setting the correct dependencies
 
